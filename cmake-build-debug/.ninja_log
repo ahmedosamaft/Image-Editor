@@ -1,0 +1,16 @@
+# ninja log v5
+2	277	7180765252871930	CMakeFiles/image_editor.dir/classes/Helper.cpp.obj	eb12212e250ebadd
+6	233	7180763374825806	CMakeFiles/image_editor.dir/classes/Reader.cpp.obj	982659fd979a19e0
+8	288	7180776727315821	CMakeFiles/image_editor.dir/main.cpp.obj	e2dc0ca040adf7ae
+1	108	7180777787842609	build.ninja	a29fe6ab687b21a0
+6	310	7180765253197683	CMakeFiles/image_editor.dir/classes/View.cpp.obj	15de8c8d5d72356
+2	262	7180751069848230	CMakeFiles/image_editor.dir/classes/bmplib.cpp.obj	9c77673f804d6c82
+313	395	7180776728361839	image_editor.exe	55ba389f654fecd5
+5	278	7180776727200953	CMakeFiles/image_editor.dir/View/Helper.cpp.obj	1e5ebd85c57f5f13
+2	313	7180776727560303	CMakeFiles/image_editor.dir/View/View.cpp.obj	c6cd80f59c517804
+14	53	7180779472241965	CMakeFiles/image_editor.dir/classes/Filter.cpp.obj	1210c84a0a512542
+2	252	7180779474226767	CMakeFiles/image_editor.dir/dependency/Reader.cpp.obj	8eafe6126b465bed
+6	334	7180779475048680	CMakeFiles/image_editor.dir/dependency/bmplib.cpp.obj	1cb31a70b2d36c5e
+11	377	7180779475481200	CMakeFiles/image_editor.dir/classes/View.cpp.obj	15de8c8d5d72356
+2	256	7180779574001059	CMakeFiles/image_editor.dir/main.cpp.obj	e2dc0ca040adf7ae
+256	332	7180779574733714	image_editor.exe	268b3de35b010bde
