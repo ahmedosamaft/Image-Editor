@@ -10,6 +10,11 @@
 #include "../dependency/Reader.h"
 #include <string>
 #include <vector>
+#include "Filter.h"
+#include "Helper.h"
+#include <direct.h>
+#include <iostream>
+
 class View {
 public:
     static std::string imgName;

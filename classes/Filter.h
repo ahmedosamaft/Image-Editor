@@ -8,8 +8,11 @@
 
 class Filter {
 public:
-    static void BWFilter();
-    static void invertFilter();
+    static void BW();
+    static void invert();
+    static void flip();
+    static void darken();
+    static void lighten();
 };
 
 

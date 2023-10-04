@@ -3,10 +3,6 @@
 //
 
 #include "View.h"
-#include "Filter.h"
-#include "Helper.h"
-#include <direct.h>
-#include <iostream>
 
 std::string View::imgName = std::string();
 unsigned char View::imgGS[Constant::SIZE][Constant::SIZE] = {};
@@ -17,8 +13,8 @@ std::vector<std::string> View::menu = {
         "Invert Filter",
         "Merge Filter",
         "Flip Image",
-        "Darken and Lighten Image",
         "Rotate Image",
+        "Darken or Lighten Image",
         "Detect Image Edges",
         "Enlarge Image",
         "Shrink Image",
@@ -43,8 +39,19 @@ void View::mainMenu() {
         cout << "Please select a filter to apply or 0 to exit:\n";
         char inp = Helper::runMenu(menu);
         if (inp == '0') break;
-        if (inp == '1') Filter::BWFilter(), Reader::showGS(imgGS);
-        if (inp == '2') Filter::invertFilter(), Reader::showGS(imgGS);
+        else if (inp == '1')
+            Filter::BW(), Reader::showGS(imgGS);
+        else if (inp == '2')
+            Filter::invert(), Reader::showGS(imgGS);
+        else if (inp == '4')
+            Filter::flip(), Reader::showGS(imgGS);
+        else if (inp == '6') {
+            std::vector<std::string> m{"Darken", "Lighten"};
+            char choice = Helper::runMenu(m);
+            if (choice=='1')Filter::darken();
+            else Filter::lighten();
+            Reader::showGS(imgGS);
+        }
     }
     string path = "\\tmp\\final.bmp";
     Reader::writeGS(strcat(getcwd(cwd, sizeof(cwd)), path.c_str()), imgGS);

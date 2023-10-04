@@ -5,7 +5,7 @@
 #include "Filter.h"
 #include "../Constants.h"
 #include "View.h"
-void Filter::BWFilter() {
+void Filter::BW() {
     long long avg = 0;
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
@@ -18,8 +18,32 @@ void Filter::BWFilter() {
                 View::imgGS[i][j] = 255;
 }
 
-void Filter::invertFilter() {
+void Filter::invert() {
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
             View::imgGS[i][j] = 255 - View::imgGS[i][j];
+}
+
+void Filter::flip() {
+    std::vector<std::string> menu{"Horizontal Flip", "Vertical Flip"};
+    char choice = Helper::runMenu(menu);
+    if (choice == '1')
+        for (int i = 0; i < Constant::SIZE; ++i)
+            for (int j = 0; j < Constant::SIZE / 2; ++j)
+                std::swap(View::imgGS[j][i], View::imgGS[Constant::SIZE - j - 1][i]);
+    else
+        for (int i = 0; i < Constant::SIZE; ++i)
+            for (int j = 0; j < Constant::SIZE / 2; ++j)
+                std::swap(View::imgGS[i][j], View::imgGS[i][Constant::SIZE - j - 1]);
+}
+void Filter::darken() {
+    for (int i = 0; i < Constant::SIZE; ++i)
+        for (int j = 0; j < Constant::SIZE; ++j)
+            View::imgGS[i][j] = View::imgGS[i][j] / 2;
+}
+
+void Filter::lighten() {
+    for (int i = 0; i < Constant::SIZE; ++i)
+        for (int j = 0; j < Constant::SIZE; ++j)
+            View::imgGS[i][j] = View::imgGS[i][j] + (255 - View::imgGS[i][j]) / 2;
 }
