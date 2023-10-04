@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/projects/Image-Editor/Constants.h">
+			<Option target="image_editor"/>
+		</Unit>
 		<Unit filename="C:/projects/Image-Editor/classes/Filter.cpp">
 			<Option target="image_editor"/>
 		</Unit>

@@ -3,10 +3,7 @@
 //
 
 #include "View.h"
-#include "Filter.h"
-#include "Helper.h"
-#include <direct.h>
-#include <iostream>
+
 
 std::string View::imgName = std::string();
 unsigned char View::imgGS[Constant::SIZE][Constant::SIZE] = {};
@@ -43,8 +40,14 @@ void View::mainMenu() {
         cout << "Please select a filter to apply or 0 to exit:\n";
         char inp = Helper::runMenu(menu);
         if (inp == '0') break;
-        if (inp == '1') Filter::BWFilter(), Reader::showGS(imgGS);
-        if (inp == '2') Filter::invertFilter(), Reader::showGS(imgGS);
+        if (inp == '1') Filter::BWFilter();
+        if (inp == '2') Filter::invertFilter();
+        if (inp == '3')Filter::mergeImages();
+        if (inp == '5')Filter::rotateImage();
+        if (inp == '7')Filter::detectImageEdges();
+
+        Reader::showGS((imgGS));
+
     }
     string path = "\\tmp\\final.bmp";
     Reader::writeGS(strcat(getcwd(cwd, sizeof(cwd)), path.c_str()), imgGS);

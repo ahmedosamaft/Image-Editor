@@ -3,6 +3,8 @@
 
 #include "../Constants.h"
 #include <string>
+#include "bmplib.h"
+
 struct Reader {
    static int readRGB(std::string filename, unsigned char inputImage[][Constant::SIZE][Constant::RGB]);
    static int writeRGB(std::string filename, unsigned char outputImage[][Constant::SIZE][Constant::RGB]);
