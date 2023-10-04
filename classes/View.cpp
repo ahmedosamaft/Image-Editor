@@ -41,20 +41,25 @@ void View::mainMenu() {
     Reader::readGS(strcat(getcwd(cwd, sizeof(cwd)), imgName.c_str()), imgGS);
     while (true) {
         cout << "Please select a filter to apply or 0 to exit:\n";
-        char inp = Helper::runMenu(menu);
-        if (inp == '0') break;
-        else if (inp == '1') Filter::BW();
-        else if (inp == '2') Filter::invert();
-        else if (inp == '3') Filter::mergeImages();
-        else if (inp == '4') Filter::flip();
-        else if (inp == '6') {
+        int inp = Helper::runMenu(menu);
+        if (inp == 0) break;
+        else if (inp == 1) Filter::BW();
+        else if (inp == 2) Filter::invert();
+        else if (inp == 3) Filter::mergeImages();
+        else if (inp == 4) Filter::flip();
+        else if (inp == 5) Filter::rotateImage();
+        else if (inp == 6) {
             std::vector<std::string> m{"Darken", "Lighten"};
-            char choice = Helper::runMenu(m);
-            if (choice == '1')Filter::darken();
+            int choice = Helper::runMenu(m);
+            if (choice == 1)Filter::darken();
             else Filter::lighten();
             Reader::showGS(imgGS);
-        } else if (inp == '5')Filter::rotateImage();
-        else if (inp == '7')Filter::detectImageEdges();
+        }
+        else if (inp == 7) Filter::detectImageEdges();
+        else if (inp == 8) Filter::enlargeImage();
+        else if (inp == 9) Filter::shrinkImage();
+        else if (inp == 10) Filter::mirrorImage();
+        else if (inp == 11);
         Reader::showGS(imgGS);
     }
     string path = "\\tmp\\final.bmp";

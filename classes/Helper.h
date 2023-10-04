@@ -11,7 +11,7 @@
 
 class Helper {
 public:
-    static char runMenu(const std::vector<std::string>& menu);
+    static int runMenu(const std::vector<std::string>& menu);
 };
 
 

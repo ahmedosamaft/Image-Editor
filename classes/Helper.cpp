@@ -5,7 +5,7 @@
 #include "Helper.h"
 #include <iostream>
 
-char Helper::runMenu(const std::vector<std::string> &menu) {
+int Helper::runMenu(const std::vector<std::string> &menu) {
     for (int i = 0; i < menu.size(); ++i) {
         printf("%d - %s\n", i + 1, menu[i].c_str());
     }
@@ -18,6 +18,6 @@ char Helper::runMenu(const std::vector<std::string> &menu) {
             std::cout << "ERROR please input a number in range 1 to " << menu.size() << ": ";
             std::cin.ignore();
         } else
-            return char(inp + 48);
+            return inp;
     }
 }

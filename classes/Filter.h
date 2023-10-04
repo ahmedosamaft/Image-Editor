@@ -18,6 +18,10 @@ public:
     static void darken();
     static void lighten();
     static void detectImageEdges();
+    static void enlargeImage();
+    static void shrinkImage();
+    static void mirrorImage();
+    static void shuffleImage();
 };
 
 

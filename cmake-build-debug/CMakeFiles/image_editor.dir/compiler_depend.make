@@ -115,12 +115,12 @@ CMakeFiles/image_editor.dir/classes/Filter.cpp.obj: C:/projects/Image-Editor/cla
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/charconv.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc \
   C:/projects/Image-Editor/dependency/bmplib.h \
-  C:/projects/Image-Editor/classes/Helper.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/vector \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_uninitialized.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_vector.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_bvector.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc \
+  C:/projects/Image-Editor/classes/Helper.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/direct.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/io.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/string.h \
@@ -152,7 +152,19 @@ CMakeFiles/image_editor.dir/classes/Filter.cpp.obj: C:/projects/Image-Editor/cla
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_ios.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ostream.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/istream \
-  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/queue \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/deque \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_deque.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/deque.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_heap.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_queue.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/uses_allocator.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/tuple \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/array \
+  C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/invoke.h
 
 CMakeFiles/image_editor.dir/classes/Helper.cpp.obj: C:/projects/Image-Editor/classes/Helper.cpp \
   C:/projects/Image-Editor/classes/Helper.h \
@@ -410,13 +422,13 @@ CMakeFiles/image_editor.dir/classes/View.cpp.obj: C:/projects/Image-Editor/class
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/charconv.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc \
   C:/projects/Image-Editor/dependency/bmplib.h \
-  C:/projects/Image-Editor/classes/Filter.h \
-  C:/projects/Image-Editor/classes/Helper.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/vector \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_uninitialized.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_vector.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_bvector.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc \
+  C:/projects/Image-Editor/classes/Filter.h \
+  C:/projects/Image-Editor/classes/Helper.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/direct.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/io.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/string.h \
@@ -819,14 +831,14 @@ CMakeFiles/image_editor.dir/main.cpp.obj: C:/projects/Image-Editor/main.cpp \
   C:/projects/Image-Editor/classes/View.h \
   C:/projects/Image-Editor/Constants.h \
   C:/projects/Image-Editor/dependency/Reader.h \
-  C:/projects/Image-Editor/classes/Filter.h \
-  C:/projects/Image-Editor/classes/View.h \
-  C:/projects/Image-Editor/classes/Helper.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/vector \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_uninitialized.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_vector.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_bvector.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc \
+  C:/projects/Image-Editor/classes/Filter.h \
+  C:/projects/Image-Editor/classes/View.h \
+  C:/projects/Image-Editor/classes/Helper.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/direct.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/io.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/string.h \
@@ -979,6 +991,8 @@ C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include
 
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/clocale:
 
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_heap.h:
+
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/_mingw_off_t.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h:
@@ -1109,8 +1123,6 @@ C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/projects/Image-Editor/dependency/bmplib.h:
 
-C:/projects/Image-Editor/classes/Helper.h:
-
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/vector:
 
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_uninitialized.h:
@@ -1123,6 +1135,8 @@ C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include
 
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc:
 
+C:/projects/Image-Editor/classes/Helper.h:
+
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/x86_64-w64-mingw32/include/io.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iostream:
@@ -1130,6 +1144,8 @@ C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ostream:
 
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ios:
+
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_deque.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/exception:
 
@@ -1166,6 +1182,26 @@ C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/istream:
 
 C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc:
+
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/queue:
+
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/deque:
+
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/deque.tcc:
+
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_queue.h:
+
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/uses_allocator.h:
+
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/tuple:
+
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/utility:
+
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_relops.h:
+
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/array:
+
+C:/Program\ Files/JetBrains/CLion\ 2023.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/invoke.h:
 
 C:/projects/Image-Editor/classes/Helper.cpp:
 
