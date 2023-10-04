@@ -3,10 +3,15 @@
 //
 
 #include "View.h"
+#include "Filter.h"
 #include "Helper.h"
+#include <direct.h>
 #include <iostream>
 
 std::string View::imgName = std::string();
+unsigned char View::imgGS[Constant::SIZE][Constant::SIZE] = {};
+unsigned char View::imgRGB[Constant::SIZE][Constant::SIZE][3] = {};
+
 std::vector<std::string> View::menu = {
         "Black & White Filter",
         "Invert Filter",
@@ -31,10 +36,16 @@ void View::mainMenu() {
     cout << "Hey Boy!\n"
          << "Please enter file name of the image to process (MUST BE IN imgs FOLDER):";
     cin >> imgName;
-    while (true){
+    imgName = "\\imgs\\" + imgName;
+    char cwd[PATH_MAX];
+    Reader::readGS(strcat(getcwd(cwd, sizeof(cwd)), imgName.c_str()), imgGS);
+    while (true) {
         cout << "Please select a filter to apply or 0 to exit:\n";
         char inp = Helper::runMenu(menu);
-        if(inp == '0') break ;
-        if(inp == '1');
+        if (inp == '0') break;
+        if (inp == '1') Filter::BWFilter(), Reader::showGS(imgGS);
+        if (inp == '2') Filter::invertFilter(), Reader::showGS(imgGS);
     }
+    string path = "\\tmp\\final.bmp";
+    Reader::writeGS(strcat(getcwd(cwd, sizeof(cwd)), path.c_str()), imgGS);
 }

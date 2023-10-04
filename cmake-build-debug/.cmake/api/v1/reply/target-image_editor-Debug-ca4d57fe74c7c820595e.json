@@ -110,7 +110,8 @@
 				3,
 				6,
 				8,
-				10
+				10,
+				11
 			]
 		}
 	],
@@ -175,6 +176,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "classes/Filter.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Constants.h",
 			"sourceGroupIndex" : 1
 		}
 	],
