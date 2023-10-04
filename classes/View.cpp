@@ -43,11 +43,10 @@ void View::mainMenu() {
         cout << "Please select a filter to apply or 0 to exit:\n";
         char inp = Helper::runMenu(menu);
         if (inp == '0') break;
-        else if (inp == '1') Filter::BW(), Reader::showGS(imgGS);
+        else if (inp == '1') Filter::BW();
         else if (inp == '2') Filter::invert();
         else if (inp == '3') Filter::mergeImages();
-        else if (inp == '4')
-            Filter::flip(), Reader::showGS(imgGS);
+        else if (inp == '4') Filter::flip();
         else if (inp == '6') {
             std::vector<std::string> m{"Darken", "Lighten"};
             char choice = Helper::runMenu(m);
@@ -56,7 +55,7 @@ void View::mainMenu() {
             Reader::showGS(imgGS);
         } else if (inp == '5')Filter::rotateImage();
         else if (inp == '7')Filter::detectImageEdges();
-
+        Reader::showGS(imgGS);
     }
     string path = "\\tmp\\final.bmp";
     Reader::writeGS(strcat(getcwd(cwd, sizeof(cwd)), path.c_str()), imgGS);
