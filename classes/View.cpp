@@ -3,6 +3,10 @@
 //
 
 #include "View.h"
+#include "Filter.h"
+#include "Helper.h"
+#include <direct.h>
+#include <iostream>
 
 std::string View::imgName = std::string();
 unsigned char View::imgGS[Constant::SIZE][Constant::SIZE] = {};
@@ -39,19 +43,20 @@ void View::mainMenu() {
         cout << "Please select a filter to apply or 0 to exit:\n";
         char inp = Helper::runMenu(menu);
         if (inp == '0') break;
-        else if (inp == '1')
-            Filter::BW(), Reader::showGS(imgGS);
-        else if (inp == '2')
-            Filter::invert(), Reader::showGS(imgGS);
+        else if (inp == '1') Filter::BW(), Reader::showGS(imgGS);
+        else if (inp == '2') Filter::invert();
+        else if (inp == '3') Filter::mergeImages();
         else if (inp == '4')
             Filter::flip(), Reader::showGS(imgGS);
         else if (inp == '6') {
             std::vector<std::string> m{"Darken", "Lighten"};
             char choice = Helper::runMenu(m);
-            if (choice=='1')Filter::darken();
+            if (choice == '1')Filter::darken();
             else Filter::lighten();
             Reader::showGS(imgGS);
-        }
+        } else if (inp == '5')Filter::rotateImage();
+        else if (inp == '7')Filter::detectImageEdges();
+
     }
     string path = "\\tmp\\final.bmp";
     Reader::writeGS(strcat(getcwd(cwd, sizeof(cwd)), path.c_str()), imgGS);

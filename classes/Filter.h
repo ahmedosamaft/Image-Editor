@@ -5,14 +5,19 @@
 #ifndef IMAGE_EDITOR_FILTER_H
 #define IMAGE_EDITOR_FILTER_H
 
+#include "../Constants.h"
+#include "View.h"
 
 class Filter {
 public:
     static void BW();
     static void invert();
+    static void mergeImages();
     static void flip();
+    static void rotateImage();
     static void darken();
     static void lighten();
+    static void detectImageEdges();
 };
 
 

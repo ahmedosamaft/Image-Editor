@@ -3,7 +3,6 @@
 //
 
 #include "Reader.h"
-#include "bmplib.h"
 
 
 int Reader::readRGB(std::string filename, unsigned char inputImage[][SIZE][RGB]) {

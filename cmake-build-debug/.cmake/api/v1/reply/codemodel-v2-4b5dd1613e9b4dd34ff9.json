@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "G:/image-editor/cmake-build-debug",
-		"source" : "G:/image-editor"
+		"build" : "C:/projects/Image-Editor/cmake-build-debug",
+		"source" : "C:/projects/Image-Editor"
 	},
 	"version" : 
 	{
