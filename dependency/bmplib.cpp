@@ -318,6 +318,7 @@ int shows = 0;
 void show() {
     string command = "\\tmp\\bmplib.bmp";
     char cwd[PATH_MAX];
+    cout << getcwd(cwd, sizeof(cwd));
     system(strcat(getcwd(cwd, sizeof(cwd)), command.c_str()));
     usleep(200000);
     shows++;

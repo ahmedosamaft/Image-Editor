@@ -9,6 +9,7 @@
 class Filter {
 public:
     static void BWFilter();
+    static void invertFilter();
 };
 
 
