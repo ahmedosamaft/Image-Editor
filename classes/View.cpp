@@ -59,7 +59,9 @@ void View::mainMenu() {
         else if (inp == 8) Filter::enlargeImage();
         else if (inp == 9) Filter::shrinkImage();
         else if (inp == 10) Filter::mirrorImage();
-        else if (inp == 11);
+        else if (inp == 11) Filter::shuffleImage();
+        else if (inp == 12) Filter::blur();
+        else if (inp == 13) Filter::crop();
         Reader::showGS(imgGS);
     }
     string path = "\\tmp\\final.bmp";

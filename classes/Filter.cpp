@@ -189,5 +189,39 @@ void Filter::mirrorImage() {
 }
 
 void Filter::shuffleImage() {
+}
 
+
+void Filter::blur() {
+    unsigned char temp[Constant::SIZE][Constant::SIZE]{};
+    int dx[]{1, -1, 0, 0, 1, -1, -1, 1,2,2,2,-2,-2,-2,0,1,-1,0,1,-1,};
+    int dy[]{0, 0, 1, -1, 1, -1, 1, -1,0,1,-1,0,1,-1,2,2,2,-2,-2,-2};
+    for (int i = 0; i < Constant::SIZE; ++i) {
+        for (int j = 0; j < Constant::SIZE; ++j) {
+            int total = View::imgGS[i][j];
+            for (int k = 0; k < 19; ++k) {
+                int x = i + dx[k],y = j + dy[k];
+                if (valid(x, y)) {
+                    total += View::imgGS[x][y];
+                }
+            }
+            temp[i][j] = total / 21;
+        }
+    }
+    for (int i = 0; i < Constant::SIZE; i++)
+        for (int j = 0; j < Constant::SIZE; j++)
+            View::imgGS[i][j] = temp[i][j];
+}
+void Filter::crop() {
+    printf("Please enter x1 y1 x2 y2 (top left & bottom right): ");
+    unsigned char temp[Constant::SIZE][Constant::SIZE]{};
+    int x1,y1,x2,y2;
+    std::cin >> x1 >> y1 >> x2 >> y2;
+    for (int row = x1; row <= x2; ++row)
+        for (int col = y1; col < y2; ++col)
+            temp[row][col] = View::imgGS[row][col];
+
+    for (int i = 0; i < Constant::SIZE; i++)
+        for (int j = 0; j < Constant::SIZE; j++)
+            View::imgGS[i][j] = temp[i][j];
 }

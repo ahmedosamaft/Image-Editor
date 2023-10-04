@@ -22,6 +22,8 @@ public:
     static void shrinkImage();
     static void mirrorImage();
     static void shuffleImage();
+    static void blur();
+    static void crop();
 };
 
 
