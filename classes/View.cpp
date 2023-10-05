@@ -28,7 +28,7 @@ std::vector<std::string> View::menu = {
         "Crop Image",
         "Skew Image Horizontally",
         "Skew Image Vertically",
-        "Save the image to a file",
+        "Save the image to a file"
 };
 
 void View::mainMenu() {

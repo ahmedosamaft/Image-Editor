@@ -17,7 +17,7 @@ void Filter::BW() {
     avg /= (Constant::SIZE * Constant::SIZE);
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
-            if (View::imgGS[i][j] < 128) View::imgGS[i][j] = 0;
+            if (View::imgGS[i][j] < avg) View::imgGS[i][j] = 0;
             else
                 View::imgGS[i][j] = 255;
 }
@@ -74,15 +74,32 @@ void Filter::rotateImage() {
 }
 
 void Filter::darken() {
+    int scale;
+    while (true) {
+        std::cout << "Enter a scale [1-5].\n";
+        std::cin >> scale;
+        if (scale >= 1 && scale <= 5)
+            break;
+        std::cout << "Invalid input\n";
+    }
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
-            View::imgGS[i][j] = View::imgGS[i][j] / 3;
+            View::imgGS[i][j] = View::imgGS[i][j] / scale;
 }
 
 void Filter::lighten() {
+    int scale;
+    while (true) {
+        std::cout << "Enter a scale [1-5].\n";
+        std::cin >> scale;
+        if (scale >= 1 && scale <= 5)
+            break;
+        std::cout << "Invalid input\n";
+    }
+    scale = 7 - scale;
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
-            View::imgGS[i][j] = View::imgGS[i][j] + (255 - View::imgGS[i][j]) / 2;
+            View::imgGS[i][j] = View::imgGS[i][j] + (255 - View::imgGS[i][j]) / scale;
 }
 
 int dirx[]{1, -1, 0, 0};
@@ -285,7 +302,7 @@ void Filter::crop() {
     while (true) {
         printf("Please enter x1 y1 x2 y2 (top left & bottom right): ");
         std::cin >> x1 >> y1 >> x2 >> y2;
-        if (!valid(x1, y1) || !valid(x2, y2) || x1 > x2 || y1 > y2)
+        if (!valid(x1, y1) || !valid(x2, y2) || x2 < x1 || y2 < y1)
             std::cout << "Invalid input.\n";
         else
             break;
