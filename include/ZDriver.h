@@ -1,9 +1,5 @@
-//
-// Created by andro on 10/4/2023.
-//
-
-#ifndef IMAGE_EDITOR_VIEW_H
-#define IMAGE_EDITOR_VIEW_H
+#ifndef IMAGE_EDITOR_ZDRIVER_H
+#define IMAGE_EDITOR_ZDRIVER_H
 
 
 #include "../Constants.h"
@@ -20,14 +16,16 @@
 #include <tuple>
 #include <vector>
 
-class View {
+class ZDriver {
 public:
     static std::string imgName;
     static std::vector<std::string> menu;
     static unsigned char imgGS[Constant::SIZE][Constant::SIZE], initialGS[Constant::SIZE][Constant::SIZE];
     static unsigned char imgRGB[Constant::SIZE][Constant::SIZE][3], initialRGB[Constant::SIZE][Constant::SIZE][3];
     static void mainMenu();
+    static void readImg(bool isRGB);
+    static void saveImage(bool isRGB);
 };
 
 
-#endif//IMAGE_EDITOR_VIEW_H
+#endif//IMAGE_EDITOR_ZDRIVER_H

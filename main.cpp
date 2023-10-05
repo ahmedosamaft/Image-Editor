@@ -1,6 +1,5 @@
-#include "classes/View.h"
+#include "include/ZDriver.h"
 
 int main() {
-    View::mainMenu();
-    return 0;
+    ZDriver::mainMenu();
 }

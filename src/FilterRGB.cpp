@@ -2,7 +2,7 @@
 // Created by mohamed tamer on 05-Oct-23.
 //
 
-#include "FilterRGB.h"
+#include "../include/FilterRGB.h"
 
 
 void FilterRGB::BW() {
@@ -12,7 +12,7 @@ void FilterRGB::BW() {
         for (int j = 0; j < Constant::SIZE; ++j) {
             long long avg2 = 0;
             for (int k = 0; k < Constant::RGB; k++)
-                avg += View::imgRGB[i][j][k], avg2 += View::imgRGB[i][j][k];
+                avg += ZDriver::imgRGB[i][j][k], avg2 += ZDriver::imgRGB[i][j][k];
             temp[i][j] = avg2 / 3;
         }
     avg /= (Constant::SIZE * Constant::SIZE * Constant::RGB);
@@ -20,16 +20,16 @@ void FilterRGB::BW() {
         for (int j = 0; j < Constant::SIZE; ++j)
             for (int k = 0; k < Constant::RGB; k++)
                 if (temp[i][j] < avg)
-                    View::imgRGB[i][j][k] = 0;
+                    ZDriver::imgRGB[i][j][k] = 0;
                 else
-                    View::imgRGB[i][j][k] = 255;
+                    ZDriver::imgRGB[i][j][k] = 255;
 }
 
 void FilterRGB::invert() {
     for (int rgb = 0; rgb < Constant::RGB; ++rgb)
         for (int i = 0; i < Constant::SIZE; ++i)
             for (int j = 0; j < Constant::SIZE; ++j)
-                View::imgRGB[i][j][rgb] = 255 - View::imgRGB[i][j][rgb];
+                ZDriver::imgRGB[i][j][rgb] = 255 - ZDriver::imgRGB[i][j][rgb];
 }
 
 void FilterRGB::mergeImages() {
@@ -43,7 +43,7 @@ void FilterRGB::mergeImages() {
     for (int k = 0; k < Constant::RGB; k++)
         for (int i = 0; i < Constant::SIZE; i++)
             for (int j = 0; j < Constant::SIZE; j++)
-                View::imgRGB[i][j][k] = (View::imgRGB[i][j][k] + secondImgRGB[i][j][k]) / 2;
+                ZDriver::imgRGB[i][j][k] = (ZDriver::imgRGB[i][j][k] + secondImgRGB[i][j][k]) / 2;
 }
 
 void FilterRGB::flip() {
@@ -52,11 +52,11 @@ void FilterRGB::flip() {
     if (choice == 1)
         for (int i = 0; i < Constant::SIZE; ++i)
             for (int j = 0; j < Constant::SIZE / 2; ++j)
-                std::swap(View::imgRGB[j][i], View::imgRGB[Constant::SIZE - j - 1][i]);
+                std::swap(ZDriver::imgRGB[j][i], ZDriver::imgRGB[Constant::SIZE - j - 1][i]);
     else
         for (int i = 0; i < Constant::SIZE; ++i)
             for (int j = 0; j < Constant::SIZE / 2; ++j)
-                std::swap(View::imgRGB[i][j], View::imgRGB[i][Constant::SIZE - j - 1]);
+                std::swap(ZDriver::imgRGB[i][j], ZDriver::imgRGB[i][Constant::SIZE - j - 1]);
 }
 
 void FilterRGB::rotateImage() {
@@ -67,15 +67,15 @@ void FilterRGB::rotateImage() {
         for (int i = 0; i < Constant::SIZE; i++)
             for (int j = 0; j < Constant::SIZE; j++)
                 if (Degree == 1)
-                    temp[i][j][rgb] = View::imgRGB[j][255 - i][rgb];
+                    temp[i][j][rgb] = ZDriver::imgRGB[j][255 - i][rgb];
                 else if (Degree == 2)
-                    temp[i][j][rgb] = View::imgRGB[255 - i][255 - j][rgb];
+                    temp[i][j][rgb] = ZDriver::imgRGB[255 - i][255 - j][rgb];
                 else
-                    temp[i][j][rgb] = View::imgRGB[255 - j][i][rgb];
+                    temp[i][j][rgb] = ZDriver::imgRGB[255 - j][i][rgb];
     for (int rgb = 0; rgb < Constant::RGB; ++rgb)
         for (int i = 0; i < Constant::SIZE; i++)
             for (int j = 0; j < Constant::SIZE; j++)
-                View::imgRGB[i][j][rgb] = temp[i][j][rgb];
+                ZDriver::imgRGB[i][j][rgb] = temp[i][j][rgb];
 }
 
 void FilterRGB::darken() {
@@ -90,7 +90,7 @@ void FilterRGB::darken() {
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
             for (int k = 0; k < Constant::RGB; k++)
-                View::imgRGB[i][j][k] = View::imgRGB[i][j][k] / scale;
+                ZDriver::imgRGB[i][j][k] = ZDriver::imgRGB[i][j][k] / scale;
 }
 
 void FilterRGB::lighten() {
@@ -106,11 +106,7 @@ void FilterRGB::lighten() {
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
             for (int k = 0; k < Constant::RGB; k++)
-                View::imgRGB[i][j][k] = View::imgRGB[i][j][k] + (255 - View::imgRGB[i][j][k]) / scale;
-}
-
-bool FilterRGB::valid(int i, int j) {
-    return i >= 0 && j >= 0 && i < Constant::SIZE && j < Constant::SIZE;
+                ZDriver::imgRGB[i][j][k] = ZDriver::imgRGB[i][j][k] + (255 - ZDriver::imgRGB[i][j][k]) / scale;
 }
 
 void FilterRGB::detectImageEdges() {
@@ -127,11 +123,11 @@ void FilterRGB::detectImageEdges() {
         for (int dir = 0; dir < 4; dir++) {
             int x = i + dirx[dir];
             int y = j + diry[dir];
-            if (valid(x, y)) {
+            if (Helper::valid(x, y)) {
                 if (!vis[x][y])
                     vis[x][y] = 1, q.emplace(x, y);
                 for (int k = 0; k < Constant::RGB; k++)
-                    if ((int) View::imgRGB[i][j][k] - (int) View::imgRGB[x][y][k] > 30)
+                    if ((int) ZDriver::imgRGB[i][j][k] - (int) ZDriver::imgRGB[x][y][k] > 30)
                         isEdge = 1;
             }
         }
@@ -145,7 +141,7 @@ void FilterRGB::detectImageEdges() {
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             for (int k = 0; k < Constant::RGB; k++)
-                View::imgRGB[i][j][k] = temp[i][j][k];
+                ZDriver::imgRGB[i][j][k] = temp[i][j][k];
 }
 
 void FilterRGB::enlargeImage() {
@@ -162,11 +158,11 @@ void FilterRGB::enlargeImage() {
             for (int rgb = 0; rgb < Constant::RGB; ++rgb)
                 for (int x = 0; x < 2; x++)
                     for (int y = 0; y < 2; y++)
-                        temp[2 * (i - startI) + x][2 * (j - startJ) + y][rgb] = View::imgRGB[i][j][rgb];
+                        temp[2 * (i - startI) + x][2 * (j - startJ) + y][rgb] = ZDriver::imgRGB[i][j][rgb];
     for (int rgb = 0; rgb < Constant::RGB; ++rgb)
         for (int i = 0; i < Constant::SIZE; i++)
             for (int j = 0; j < Constant::SIZE; j++)
-                View::imgRGB[i][j][rgb] = temp[i][j][rgb];
+                ZDriver::imgRGB[i][j][rgb] = temp[i][j][rgb];
 }
 
 void FilterRGB::shrinkImage() {
@@ -184,7 +180,7 @@ void FilterRGB::shrinkImage() {
                 int avg = 0;
                 for (int x = 0; x < endX; x++)
                     for (int y = 0; y < endY; y++)
-                        avg += View::imgRGB[endX * i + x][endY * j + y][k];
+                        avg += ZDriver::imgRGB[endX * i + x][endY * j + y][k];
 
                 avg /= endX * endX;
                 temp[i][j][k] = avg;
@@ -193,7 +189,7 @@ void FilterRGB::shrinkImage() {
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             for (int k = 0; k < Constant::RGB; k++)
-                View::imgRGB[i][j][k] = temp[i][j][k];
+                ZDriver::imgRGB[i][j][k] = temp[i][j][k];
 }
 
 void FilterRGB::mirrorImage() {
@@ -203,24 +199,24 @@ void FilterRGB::mirrorImage() {
         for (int rgb = 0; rgb < Constant::RGB; ++rgb)
             for (int i = 0; i < Constant::SIZE; i++)
                 for (int j = Constant::SIZE / 2; j < Constant::SIZE; j++)
-                    View::imgRGB[i][j][rgb] = View::imgRGB[i][Constant::SIZE - j + 1][rgb];
+                    ZDriver::imgRGB[i][j][rgb] = ZDriver::imgRGB[i][Constant::SIZE - j + 1][rgb];
 
     else if (option == 2)
         for (int rgb = 0; rgb < Constant::RGB; ++rgb)
             for (int i = 0; i < Constant::SIZE; i++)
                 for (int j = 0; j < Constant::SIZE / 2; j++)
-                    View::imgRGB[i][j][rgb] = View::imgRGB[i][Constant::SIZE - j + 1][rgb];
+                    ZDriver::imgRGB[i][j][rgb] = ZDriver::imgRGB[i][Constant::SIZE - j + 1][rgb];
 
     else if (option == 3)
         for (int rgb = 0; rgb < Constant::RGB; ++rgb)
             for (int i = Constant::SIZE / 2; i < Constant::SIZE; i++)
                 for (int j = 0; j < Constant::SIZE; j++)
-                    View::imgRGB[i][j][rgb] = View::imgRGB[Constant::SIZE - i + 1][j][rgb];
+                    ZDriver::imgRGB[i][j][rgb] = ZDriver::imgRGB[Constant::SIZE - i + 1][j][rgb];
     else
         for (int rgb = 0; rgb < Constant::RGB; ++rgb)
             for (int i = 0; i < Constant::SIZE / 2; i++)
                 for (int j = 0; j < Constant::SIZE; j++)
-                    View::imgRGB[i][j][rgb] = View::imgRGB[Constant::SIZE - i + 1][j][rgb];
+                    ZDriver::imgRGB[i][j][rgb] = ZDriver::imgRGB[Constant::SIZE - i + 1][j][rgb];
 }
 
 void FilterRGB::shuffleImage() {
@@ -229,13 +225,13 @@ void FilterRGB::shuffleImage() {
         for (int j = 0; j < Constant::SIZE; j++)
             for (int k = 0; k < Constant::RGB; k++)
                 if (i < Constant::SIZE / 2 && j < Constant::SIZE / 2)
-                    quarters[0][i][j][k] = View::imgRGB[i][j][k];
+                    quarters[0][i][j][k] = ZDriver::imgRGB[i][j][k];
                 else if (i < Constant::SIZE / 2 && j >= Constant::SIZE / 2)
-                    quarters[1][i][j - Constant::SIZE / 2][k] = View::imgRGB[i][j][k];
+                    quarters[1][i][j - Constant::SIZE / 2][k] = ZDriver::imgRGB[i][j][k];
                 else if (i >= Constant::SIZE / 2 && j < Constant::SIZE / 2)
-                    quarters[2][i - Constant::SIZE / 2][j][k] = View::imgRGB[i][j][k];
+                    quarters[2][i - Constant::SIZE / 2][j][k] = ZDriver::imgRGB[i][j][k];
                 else
-                    quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2][k] = View::imgRGB[i][j][k];
+                    quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2][k] = ZDriver::imgRGB[i][j][k];
     int order[4];
     while (true) {
         std::cout << "Enter the order of the quarters.\n";
@@ -263,13 +259,13 @@ void FilterRGB::shuffleImage() {
         for (int j = 0; j < Constant::SIZE; j++)
             for (int k = 0; k < Constant::RGB; k++)
                 if (i < Constant::SIZE / 2 && j < Constant::SIZE / 2)
-                    View::imgRGB[i][j][k] = quarters[0][i][j][k];
+                    ZDriver::imgRGB[i][j][k] = quarters[0][i][j][k];
                 else if (i < Constant::SIZE / 2 && j >= Constant::SIZE / 2)
-                    View::imgRGB[i][j][k] = quarters[1][i][j - Constant::SIZE / 2][k];
+                    ZDriver::imgRGB[i][j][k] = quarters[1][i][j - Constant::SIZE / 2][k];
                 else if (i >= Constant::SIZE / 2 && j < Constant::SIZE / 2)
-                    View::imgRGB[i][j][k] = quarters[2][i - Constant::SIZE / 2][j][k];
+                    ZDriver::imgRGB[i][j][k] = quarters[2][i - Constant::SIZE / 2][j][k];
                 else
-                    View::imgRGB[i][j][k] = quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2][k];
+                    ZDriver::imgRGB[i][j][k] = quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2][k];
 }
 
 void FilterRGB::blur() {
@@ -290,7 +286,7 @@ void FilterRGB::blur() {
                 std::queue<std::pair<int, int>> q;
                 q.emplace(i, j);
                 vis[i][j][rgb] = vid;
-                int total = View::imgRGB[i][j][rgb], distance = scale, curI, curJ, pixels = 1;
+                int total = ZDriver::imgRGB[i][j][rgb], distance = scale, curI, curJ, pixels = 1;
                 while (distance--) {
                     int sz = q.size();
                     for (int k = 0; k < sz; k++) {
@@ -299,11 +295,11 @@ void FilterRGB::blur() {
                         for (int dir = 0; dir < 4; dir++) {
                             int x = curI + dirx[dir];
                             int y = curJ + diry[dir];
-                            if (valid(x, y) && vis[x][y][rgb] != vid) {
+                            if (Helper::valid(x, y) && vis[x][y][rgb] != vid) {
                                 q.emplace(x, y);
                                 vis[x][y][rgb] = vid;
                                 pixels++;
-                                total += View::imgRGB[x][y][rgb];
+                                total += ZDriver::imgRGB[x][y][rgb];
                             }
                         }
                     }
@@ -314,7 +310,7 @@ void FilterRGB::blur() {
     for (int rgb = 0; rgb < Constant::RGB; ++rgb)
         for (int i = 0; i < Constant::SIZE; i++)
             for (int j = 0; j < Constant::SIZE; j++)
-                View::imgRGB[i][j][rgb] = temp[i][j][rgb];
+                ZDriver::imgRGB[i][j][rgb] = temp[i][j][rgb];
 }
 
 void FilterRGB::crop() {
@@ -322,7 +318,7 @@ void FilterRGB::crop() {
     while (true) {
         printf("Please enter x1 y1 x2 y2 (top left & bottom right): ");
         std::cin >> x1 >> y1 >> x2 >> y2;
-        if (!valid(x1, y1) || !valid(x2, y2) || x2 < x1 || y2 < y1)
+        if (!Helper::valid(x1, y1) || !Helper::valid(x2, y2) || x2 < x1 || y2 < y1)
             std::cout << "Invalid input.\n";
         else
             break;
@@ -332,7 +328,7 @@ void FilterRGB::crop() {
         for (int j = 0; j < Constant::SIZE; j++)
             if (i < x1 || i > x2 || j < y1 || j > y2)
                 for (int rgb = 0; rgb < 3; ++rgb)
-                    View::imgRGB[i][j][rgb] = 0;
+                    ZDriver::imgRGB[i][j][rgb] = 0;
 }
 
 void FilterRGB::skewHorizontally() {
@@ -354,7 +350,7 @@ void FilterRGB::skewHorizontally() {
             for (int col = scale - here; col < Constant::SIZE - here; col++) {
                 int avg = 0, pixels = 0;
                 for (int k = std::max(0, (int) ceil(cur - toTake)); k < std::min(Constant::SIZE, (int) ceil(cur + toTake)); k++)
-                    pixels++, avg += View::imgRGB[row][k][rgb];
+                    pixels++, avg += ZDriver::imgRGB[row][k][rgb];
                 avg /= std::max(1, pixels);
                 temp[row][col][rgb] = avg;
                 cur += toTake;
@@ -364,7 +360,7 @@ void FilterRGB::skewHorizontally() {
     for (int rgb = 0; rgb < Constant::RGB; ++rgb)
         for (int i = 0; i < Constant::SIZE; i++)
             for (int j = 0; j < Constant::SIZE; j++)
-                View::imgRGB[i][j][rgb] = temp[i][j][rgb];
+                ZDriver::imgRGB[i][j][rgb] = temp[i][j][rgb];
 }
 
 void FilterRGB::skewVertically() {
@@ -386,7 +382,7 @@ void FilterRGB::skewVertically() {
             for (int col = scale - here; col < Constant::SIZE - here; col++) {
                 int avg = 0, pixels = 0;
                 for (int k = std::max(0, (int) ceil(cur - toTake)); k < std::min(Constant::SIZE, (int) ceil(cur + toTake)); k++)
-                    pixels++, avg += View::imgRGB[k][row][rgb];
+                    pixels++, avg += ZDriver::imgRGB[k][row][rgb];
                 avg /= std::max(1, pixels);
                 temp[col][row][rgb] = avg;
                 cur += toTake;
@@ -397,5 +393,5 @@ void FilterRGB::skewVertically() {
     for (int rgb = 0; rgb < Constant::RGB; ++rgb)
         for (int i = 0; i < Constant::SIZE; i++)
             for (int j = 0; j < Constant::SIZE; j++)
-                View::imgRGB[i][j][rgb] = temp[i][j][rgb];
+                ZDriver::imgRGB[i][j][rgb] = temp[i][j][rgb];
 }

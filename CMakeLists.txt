@@ -3,4 +3,4 @@ project(image_editor)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(image_editor main.cpp dependency/Reader.cpp dependency/Reader.h dependency/bmplib.h dependency/bmplib.cpp classes/View.cpp classes/View.h classes/Helper.cpp classes/Helper.h classes/FilterGS.cpp classes/FilterGS.h Constants.h classes/FilterRGB.cpp classes/FilterRGB.h)
+add_executable(image_editor main.cpp dependency/Reader.cpp dependency/Reader.h dependency/bmplib.h dependency/bmplib.cpp src/ZDriver.cpp include/ZDriver.h src/Helper.cpp include/Helper.h src/FilterGS.cpp include/FilterGS.h Constants.h src/FilterRGB.cpp include/FilterRGB.h)

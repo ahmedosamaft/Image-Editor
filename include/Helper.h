@@ -12,7 +12,8 @@
 class Helper {
 public:
     static int runMenu(const std::vector<std::string> &menu);
-    static void getInitialImage(int &choice);
+    static void resetFilters(bool isRGB);
+    static bool valid(int i, int j);
 };
 
 

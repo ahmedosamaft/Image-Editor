@@ -2,8 +2,8 @@
 // Created by andro on 10/4/2023.
 //
 
-#include "Helper.h"
-#include "View.h"
+#include "../include/Helper.h"
+#include "../include/ZDriver.h"
 
 int Helper::runMenu(const std::vector<std::string> &menu) {
     for (int i = 0; i < menu.size(); ++i) {
@@ -22,20 +22,24 @@ int Helper::runMenu(const std::vector<std::string> &menu) {
     }
 }
 
-void Helper::getInitialImage(int &choice) {
-    if (choice == 1) {
+void Helper::resetFilters(bool isRGB) {
+    if (!isRGB) {
         for (int i = 0; i < Constant::SIZE; ++i) {
             for (int j = 0; j < Constant::SIZE; ++j) {
-                View::imgGS[i][j] = View::initialGS[i][j];
+                ZDriver::imgGS[i][j] = ZDriver::initialGS[i][j];
             }
         }
     } else {
         for (int i = 0; i < Constant::SIZE; ++i) {
             for (int j = 0; j < Constant::SIZE; ++j) {
                 for (int k = 0; k < Constant::RGB; ++k) {
-                    View::imgRGB[i][j][k] = View::initialRGB[i][j][k];
+                    ZDriver::imgRGB[i][j][k] = ZDriver::initialRGB[i][j][k];
                 }
             }
         }
-    };
+    }
+}
+
+bool Helper::valid(int i, int j) {
+    return (i >= 0 && j >= 0 && i < Constant::SIZE && j < Constant::SIZE);
 }

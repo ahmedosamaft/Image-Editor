@@ -153,9 +153,10 @@ int writeRGBBMP(const char *filename, unsigned char outputImage[][SIZE][RGB]) {
 
     // write result bmp file
     if (!(file = fopen(filename, "wb"))) {
-        cout << "Cannot open file: " << filename << endl;
-        return (1);
+        system("mkdir output");
+        writeRGBBMP(filename,outputImage);
     }
+
     fwrite(&hdr, sizeof(unsigned char), 0x36, file);
     fwrite(tempImage, sizeof(unsigned char), SIZE * SIZE * RGB, file);
     fclose(file);
@@ -293,9 +294,10 @@ int writeGSBMP(const char *filename, unsigned char outputImage[][SIZE]) {
 
     // write result bmp file
     if (!(file = fopen(filename, "wb"))) {
-        cout << "Cannot open file: " << filename << endl;
-        return (1);
+        system("mkdir output");
+        writeGSBMP(filename,outputImage);
     }
+
     uint8 z = 0;
     fwrite(&hdr, sizeof(unsigned char), 0x36, file);
     for (i = 0; i < SIZE; i++) {
@@ -316,20 +318,17 @@ int writeGSBMP(const char *filename, unsigned char outputImage[][SIZE]) {
 int shows = 0;
 
 void show() {
-    string command = "\\tmp\\bmplib.bmp";
-    char cwd[PATH_MAX];
-    cout << getcwd(cwd, sizeof(cwd));
-    system(strcat(getcwd(cwd, sizeof(cwd)), command.c_str()));
+    system(".\\tmp\\currentImg.bmp");
     usleep(200000);
     shows++;
 }
 
 void showRGBBMP(unsigned char inputImage[][SIZE][RGB]) {
-    writeRGBBMP("./tmp/bmplib.bmp", inputImage);
+    writeRGBBMP("./tmp/currentImg.bmp", inputImage);
     show();
 }
 
 void showGSBMP(unsigned char inputImage[][SIZE]) {
-    writeGSBMP("./tmp/bmplib.bmp", inputImage);
+    writeGSBMP("./tmp/currentImg.bmp", inputImage);
     show();
 }

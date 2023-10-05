@@ -1,13 +1,12 @@
 //
-// Created by andro on 10/4/2023.
+// Created by mohamed tamer on 05-Oct-23.
 //
 
-#ifndef IMAGE_EDITOR_FILTERGS_H
-#define IMAGE_EDITOR_FILTERGS_H
+#ifndef IMAGE_EDITOR_FILTERRGB_H
+#define IMAGE_EDITOR_FILTERRGB_H
+#include "ZDriver.h"
 
-#include "View.h"
-
-class FilterGS {
+class FilterRGB {
 public:
     inline static int dirx[] = {1, -1, 0, 0};
     inline static int diry[] = {0, 0, 1, -1};
@@ -27,9 +26,7 @@ public:
     static void crop();
     static void skewHorizontally();
     static void skewVertically();
-    static bool valid(int i, int j);
-
 };
 
 
-#endif//IMAGE_EDITOR_FILTERGS_H
+#endif//IMAGE_EDITOR_FILTERRGB_H

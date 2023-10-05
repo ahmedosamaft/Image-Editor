@@ -2,26 +2,26 @@
 // Created by andro on 10/4/2023.
 //
 
-#include "FilterGS.h"
+#include "../include/FilterGS.h"
 
 void FilterGS::BW() {
     long long avg = 0;
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
-            avg += View::imgGS[i][j];
+            avg += ZDriver::imgGS[i][j];
     avg /= (Constant::SIZE * Constant::SIZE);
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
-            if (View::imgGS[i][j] < avg)
-                View::imgGS[i][j] = 0;
+            if (ZDriver::imgGS[i][j] < avg)
+                ZDriver::imgGS[i][j] = 0;
             else
-                View::imgGS[i][j] = 255;
+                ZDriver::imgGS[i][j] = 255;
 }
 
 void FilterGS::invert() {
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
-            View::imgGS[i][j] = 255 - View::imgGS[i][j];
+            ZDriver::imgGS[i][j] = 255 - ZDriver::imgGS[i][j];
 }
 
 void FilterGS::mergeImages() {
@@ -34,7 +34,7 @@ void FilterGS::mergeImages() {
     Reader::readGS(strcat(getcwd(cwd, sizeof(cwd)), imgName.c_str()), secondImgGS);
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
-            View::imgGS[i][j] = (View::imgGS[i][j] + secondImgGS[i][j]) / 2;
+            ZDriver::imgGS[i][j] = (ZDriver::imgGS[i][j] + secondImgGS[i][j]) / 2;
 }
 
 void FilterGS::flip() {
@@ -43,11 +43,11 @@ void FilterGS::flip() {
     if (choice == 1)
         for (int i = 0; i < Constant::SIZE; ++i)
             for (int j = 0; j < Constant::SIZE / 2; ++j)
-                std::swap(View::imgGS[j][i], View::imgGS[Constant::SIZE - j - 1][i]);
+                std::swap(ZDriver::imgGS[j][i], ZDriver::imgGS[Constant::SIZE - j - 1][i]);
     else
         for (int i = 0; i < Constant::SIZE; ++i)
             for (int j = 0; j < Constant::SIZE / 2; ++j)
-                std::swap(View::imgGS[i][j], View::imgGS[i][Constant::SIZE - j - 1]);
+                std::swap(ZDriver::imgGS[i][j], ZDriver::imgGS[i][Constant::SIZE - j - 1]);
 }
 
 void FilterGS::rotateImage() {
@@ -57,15 +57,15 @@ void FilterGS::rotateImage() {
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             if (Degree == 1)
-                temp[i][j] = View::imgGS[j][255 - i];
+                temp[i][j] = ZDriver::imgGS[j][255 - i];
             else if (Degree == 2)
-                temp[i][j] = View::imgGS[255 - i][255 - j];
+                temp[i][j] = ZDriver::imgGS[255 - i][255 - j];
             else
-                temp[i][j] = View::imgGS[255 - j][i];
+                temp[i][j] = ZDriver::imgGS[255 - j][i];
 
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
-            View::imgGS[i][j] = temp[i][j];
+            ZDriver::imgGS[i][j] = temp[i][j];
 }
 
 void FilterGS::darken() {
@@ -79,7 +79,7 @@ void FilterGS::darken() {
     }
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
-            View::imgGS[i][j] = View::imgGS[i][j] / scale;
+            ZDriver::imgGS[i][j] = ZDriver::imgGS[i][j] / scale;
 }
 
 void FilterGS::lighten() {
@@ -94,12 +94,9 @@ void FilterGS::lighten() {
     scale = 7 - scale;
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
-            View::imgGS[i][j] = View::imgGS[i][j] + (255 - View::imgGS[i][j]) / scale;
+            ZDriver::imgGS[i][j] = ZDriver::imgGS[i][j] + (255 - ZDriver::imgGS[i][j]) / scale;
 }
 
-bool FilterGS::valid(int i, int j) {
-    return i >= 0 && j >= 0 && i < Constant::SIZE && j < Constant::SIZE;
-}
 
 void FilterGS::detectImageEdges() {
     unsigned char temp[Constant::SIZE][Constant::SIZE];
@@ -115,10 +112,10 @@ void FilterGS::detectImageEdges() {
         for (int dir = 0; dir < 4; dir++) {
             int x = i + dirx[dir];
             int y = j + diry[dir];
-            if (valid(x, y)) {
+            if (Helper::valid(x, y)) {
                 if (!vis[x][y])
                     vis[x][y] = 1, q.emplace(x, y);
-                if ((int) View::imgGS[i][j] - (int) View::imgGS[x][y] > 30)
+                if ((int) ZDriver::imgGS[i][j] - (int) ZDriver::imgGS[x][y] > 30)
                     isEdge = 1;
             }
         }
@@ -130,7 +127,7 @@ void FilterGS::detectImageEdges() {
 
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
-            View::imgGS[i][j] = temp[i][j];
+            ZDriver::imgGS[i][j] = temp[i][j];
 }
 
 void FilterGS::enlargeImage() {
@@ -146,11 +143,11 @@ void FilterGS::enlargeImage() {
         for (int j = startJ; j < endJ; j++)
             for (int x = 0; x < 2; x++)
                 for (int y = 0; y < 2; y++)
-                    temp[2 * (i - startI) + x][2 * (j - startJ) + y] = View::imgGS[i][j];
+                    temp[2 * (i - startI) + x][2 * (j - startJ) + y] = ZDriver::imgGS[i][j];
 
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
-            View::imgGS[i][j] = temp[i][j];
+            ZDriver::imgGS[i][j] = temp[i][j];
 }
 
 void FilterGS::shrinkImage() {
@@ -167,14 +164,14 @@ void FilterGS::shrinkImage() {
             int avg = 0;
             for (int x = 0; x < endX; x++)
                 for (int y = 0; y < endY; y++)
-                    avg += View::imgGS[endX * i + x][endY * j + y];
+                    avg += ZDriver::imgGS[endX * i + x][endY * j + y];
             avg /= endX * endX;
             temp[i][j] = avg;
         }
 
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
-            View::imgGS[i][j] = temp[i][j];
+            ZDriver::imgGS[i][j] = temp[i][j];
 }
 
 void FilterGS::mirrorImage() {
@@ -183,19 +180,19 @@ void FilterGS::mirrorImage() {
     if (option == 1)
         for (int i = 0; i < Constant::SIZE; i++)
             for (int j = Constant::SIZE / 2; j < Constant::SIZE; j++)
-                View::imgGS[i][j] = View::imgGS[i][Constant::SIZE - j + 1];
+                ZDriver::imgGS[i][j] = ZDriver::imgGS[i][Constant::SIZE - j + 1];
     else if (option == 2)
         for (int i = 0; i < Constant::SIZE; i++)
             for (int j = 0; j < Constant::SIZE / 2; j++)
-                View::imgGS[i][j] = View::imgGS[i][Constant::SIZE - j + 1];
+                ZDriver::imgGS[i][j] = ZDriver::imgGS[i][Constant::SIZE - j + 1];
     else if (option == 3)
         for (int i = Constant::SIZE / 2; i < Constant::SIZE; i++)
             for (int j = 0; j < Constant::SIZE; j++)
-                View::imgGS[i][j] = View::imgGS[Constant::SIZE - i + 1][j];
+                ZDriver::imgGS[i][j] = ZDriver::imgGS[Constant::SIZE - i + 1][j];
     else
         for (int i = 0; i < Constant::SIZE / 2; i++)
             for (int j = 0; j < Constant::SIZE; j++)
-                View::imgGS[i][j] = View::imgGS[Constant::SIZE - i + 1][j];
+                ZDriver::imgGS[i][j] = ZDriver::imgGS[Constant::SIZE - i + 1][j];
 }
 
 void FilterGS::shuffleImage() {
@@ -203,13 +200,13 @@ void FilterGS::shuffleImage() {
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             if (i < Constant::SIZE / 2 && j < Constant::SIZE / 2)
-                quarters[0][i][j] = View::imgGS[i][j];
+                quarters[0][i][j] = ZDriver::imgGS[i][j];
             else if (i < Constant::SIZE / 2 && j >= Constant::SIZE / 2)
-                quarters[1][i][j - Constant::SIZE / 2] = View::imgGS[i][j];
+                quarters[1][i][j - Constant::SIZE / 2] = ZDriver::imgGS[i][j];
             else if (i >= Constant::SIZE / 2 && j < Constant::SIZE / 2)
-                quarters[2][i - Constant::SIZE / 2][j] = View::imgGS[i][j];
+                quarters[2][i - Constant::SIZE / 2][j] = ZDriver::imgGS[i][j];
             else
-                quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2] = View::imgGS[i][j];
+                quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2] = ZDriver::imgGS[i][j];
     int order[4];
     while (true) {
         std::cout << "Enter the order of the quarters.\n";
@@ -236,13 +233,13 @@ void FilterGS::shuffleImage() {
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             if (i < Constant::SIZE / 2 && j < Constant::SIZE / 2)
-                View::imgGS[i][j] = quarters[0][i][j];
+                ZDriver::imgGS[i][j] = quarters[0][i][j];
             else if (i < Constant::SIZE / 2 && j >= Constant::SIZE / 2)
-                View::imgGS[i][j] = quarters[1][i][j - Constant::SIZE / 2];
+                ZDriver::imgGS[i][j] = quarters[1][i][j - Constant::SIZE / 2];
             else if (i >= Constant::SIZE / 2 && j < Constant::SIZE / 2)
-                View::imgGS[i][j] = quarters[2][i - Constant::SIZE / 2][j];
+                ZDriver::imgGS[i][j] = quarters[2][i - Constant::SIZE / 2][j];
             else
-                View::imgGS[i][j] = quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2];
+                ZDriver::imgGS[i][j] = quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2];
 }
 
 
@@ -263,7 +260,7 @@ void FilterGS::blur() {
             std::queue<std::pair<int, int>> q;
             q.emplace(i, j);
             vis[i][j] = vid;
-            int total = View::imgGS[i][j], distance = scale, curI, curJ, pixels = 1;
+            int total = ZDriver::imgGS[i][j], distance = scale, curI, curJ, pixels = 1;
             while (distance--) {
                 int sz = q.size();
                 for (int k = 0; k < sz; k++) {
@@ -272,11 +269,11 @@ void FilterGS::blur() {
                     for (int dir = 0; dir < 4; dir++) {
                         int x = curI + dirx[dir];
                         int y = curJ + diry[dir];
-                        if (valid(x, y) && vis[x][y] != vid) {
+                        if (Helper::valid(x, y) && vis[x][y] != vid) {
                             q.emplace(x, y);
                             vis[x][y] = vid;
                             pixels++;
-                            total += View::imgGS[x][y];
+                            total += ZDriver::imgGS[x][y];
                         }
                     }
                 }
@@ -286,7 +283,7 @@ void FilterGS::blur() {
         }
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
-            View::imgGS[i][j] = temp[i][j];
+            ZDriver::imgGS[i][j] = temp[i][j];
 }
 
 void FilterGS::crop() {
@@ -294,7 +291,7 @@ void FilterGS::crop() {
     while (true) {
         printf("Please enter x1 y1 x2 y2 (top left & bottom right): ");
         std::cin >> x1 >> y1 >> x2 >> y2;
-        if (!valid(x1, y1) || !valid(x2, y2) || x2 < x1 || y2 < y1)
+        if (!Helper::valid(x1, y1) || !Helper::valid(x2, y2) || x2 < x1 || y2 < y1)
             std::cout << "Invalid input.\n";
         else
             break;
@@ -303,7 +300,7 @@ void FilterGS::crop() {
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             if (i < x1 || i > x2 || j < y1 || j > y2)
-                View::imgGS[i][j] = 0;
+                ZDriver::imgGS[i][j] = 0;
 }
 
 void FilterGS::skewHorizontally() {
@@ -324,7 +321,7 @@ void FilterGS::skewHorizontally() {
         for (int col = scale - here; col < Constant::SIZE - here; col++) {
             int avg = 0, pixels = 0;
             for (int k = std::max(0, (int) ceil(cur - toTake)); k < std::min(Constant::SIZE, (int) ceil(cur + toTake)); k++)
-                pixels++, avg += View::imgGS[row][k];
+                pixels++, avg += ZDriver::imgGS[row][k];
             avg /= std::max(1, pixels);
             temp[row][col] = avg;
             cur += toTake;
@@ -332,7 +329,7 @@ void FilterGS::skewHorizontally() {
     }
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
-            View::imgGS[i][j] = temp[i][j];
+            ZDriver::imgGS[i][j] = temp[i][j];
 }
 
 void FilterGS::skewVertically() {
@@ -354,7 +351,7 @@ void FilterGS::skewVertically() {
         for (int col = scale - here; col < Constant::SIZE - here; col++) {
             int avg = 0, pixels = 0;
             for (int k = std::max(0, (int) ceil(cur - toTake)); k < std::min(Constant::SIZE, (int) ceil(cur + toTake)); k++)
-                pixels++, avg += View::imgGS[k][row];
+                pixels++, avg += ZDriver::imgGS[k][row];
             avg /= std::max(1, pixels);
             temp[col][row] = avg;
             cur += toTake;
@@ -362,5 +359,5 @@ void FilterGS::skewVertically() {
     }
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
-            View::imgGS[i][j] = temp[i][j];
+            ZDriver::imgGS[i][j] = temp[i][j];
 }

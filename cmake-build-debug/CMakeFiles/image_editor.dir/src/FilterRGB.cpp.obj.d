@@ -1,5 +1,6 @@
-CMakeFiles/image_editor.dir/main.cpp.obj: G:\Image-Editor\main.cpp \
- G:\Image-Editor\include/ZDriver.h G:/Image-Editor/Constants.h \
+CMakeFiles/image_editor.dir/src/FilterRGB.cpp.obj: \
+ G:\Image-Editor\src\FilterRGB.cpp G:/Image-Editor/include/FilterRGB.h \
+ G:/Image-Editor/include/ZDriver.h G:/Image-Editor/Constants.h \
  G:/Image-Editor/dependency/Reader.h G:/Image-Editor/Constants.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/string \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
@@ -108,9 +109,8 @@ CMakeFiles/image_editor.dir/main.cpp.obj: G:\Image-Editor\main.cpp \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cerrno \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/charconv.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc \
- G:/Image-Editor/dependency/bmplib.h G:\Image-Editor\include/FilterGS.h \
- G:\Image-Editor\include/ZDriver.h G:\Image-Editor\include/FilterRGB.h \
- G:\Image-Editor\include/Helper.h \
+ G:/Image-Editor/dependency/bmplib.h G:/Image-Editor/include/FilterGS.h \
+ G:/Image-Editor/include/FilterRGB.h G:/Image-Editor/include/Helper.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/vector \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_uninitialized.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_vector.h \

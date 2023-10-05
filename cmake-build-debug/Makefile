@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.1.4\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.3.3\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2023.1.4\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2022.3.3\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\projects\Image-Editor
+CMAKE_SOURCE_DIR = G:\Image-Editor
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\projects\Image-Editor\cmake-build-debug
+CMAKE_BINARY_DIR = G:\Image-Editor\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = C:\projects\Image-Editor\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2023.1.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"C:\Program Files\JetBrains\CLion 2022.3.3\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2023.1.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Program Files\JetBrains\CLion 2022.3.3\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\projects\Image-Editor\cmake-build-debug\CMakeFiles C:\projects\Image-Editor\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start G:\Image-Editor\cmake-build-debug\CMakeFiles G:\Image-Editor\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\projects\Image-Editor\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start G:\Image-Editor\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -127,102 +127,6 @@ image_editor: cmake_check_build_system
 image_editor/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/build
 .PHONY : image_editor/fast
-
-classes/FilterGS.obj: classes/FilterGS.cpp.obj
-.PHONY : classes/FilterGS.obj
-
-# target to build an object file
-classes/FilterGS.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj
-.PHONY : classes/FilterGS.cpp.obj
-
-classes/FilterGS.i: classes/FilterGS.cpp.i
-.PHONY : classes/FilterGS.i
-
-# target to preprocess a source file
-classes/FilterGS.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterGS.cpp.i
-.PHONY : classes/FilterGS.cpp.i
-
-classes/FilterGS.s: classes/FilterGS.cpp.s
-.PHONY : classes/FilterGS.s
-
-# target to generate assembly for a file
-classes/FilterGS.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterGS.cpp.s
-.PHONY : classes/FilterGS.cpp.s
-
-classes/FilterRGB.obj: classes/FilterRGB.cpp.obj
-.PHONY : classes/FilterRGB.obj
-
-# target to build an object file
-classes/FilterRGB.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj
-.PHONY : classes/FilterRGB.cpp.obj
-
-classes/FilterRGB.i: classes/FilterRGB.cpp.i
-.PHONY : classes/FilterRGB.i
-
-# target to preprocess a source file
-classes/FilterRGB.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.i
-.PHONY : classes/FilterRGB.cpp.i
-
-classes/FilterRGB.s: classes/FilterRGB.cpp.s
-.PHONY : classes/FilterRGB.s
-
-# target to generate assembly for a file
-classes/FilterRGB.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.s
-.PHONY : classes/FilterRGB.cpp.s
-
-classes/Helper.obj: classes/Helper.cpp.obj
-.PHONY : classes/Helper.obj
-
-# target to build an object file
-classes/Helper.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/Helper.cpp.obj
-.PHONY : classes/Helper.cpp.obj
-
-classes/Helper.i: classes/Helper.cpp.i
-.PHONY : classes/Helper.i
-
-# target to preprocess a source file
-classes/Helper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/Helper.cpp.i
-.PHONY : classes/Helper.cpp.i
-
-classes/Helper.s: classes/Helper.cpp.s
-.PHONY : classes/Helper.s
-
-# target to generate assembly for a file
-classes/Helper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/Helper.cpp.s
-.PHONY : classes/Helper.cpp.s
-
-classes/View.obj: classes/View.cpp.obj
-.PHONY : classes/View.obj
-
-# target to build an object file
-classes/View.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/View.cpp.obj
-.PHONY : classes/View.cpp.obj
-
-classes/View.i: classes/View.cpp.i
-.PHONY : classes/View.i
-
-# target to preprocess a source file
-classes/View.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/View.cpp.i
-.PHONY : classes/View.cpp.i
-
-classes/View.s: classes/View.cpp.s
-.PHONY : classes/View.s
-
-# target to generate assembly for a file
-classes/View.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/View.cpp.s
-.PHONY : classes/View.cpp.s
 
 dependency/Reader.obj: dependency/Reader.cpp.obj
 .PHONY : dependency/Reader.obj
@@ -296,6 +200,102 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/FilterGS.obj: src/FilterGS.cpp.obj
+.PHONY : src/FilterGS.obj
+
+# target to build an object file
+src/FilterGS.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/FilterGS.cpp.obj
+.PHONY : src/FilterGS.cpp.obj
+
+src/FilterGS.i: src/FilterGS.cpp.i
+.PHONY : src/FilterGS.i
+
+# target to preprocess a source file
+src/FilterGS.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/FilterGS.cpp.i
+.PHONY : src/FilterGS.cpp.i
+
+src/FilterGS.s: src/FilterGS.cpp.s
+.PHONY : src/FilterGS.s
+
+# target to generate assembly for a file
+src/FilterGS.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/FilterGS.cpp.s
+.PHONY : src/FilterGS.cpp.s
+
+src/FilterRGB.obj: src/FilterRGB.cpp.obj
+.PHONY : src/FilterRGB.obj
+
+# target to build an object file
+src/FilterRGB.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/FilterRGB.cpp.obj
+.PHONY : src/FilterRGB.cpp.obj
+
+src/FilterRGB.i: src/FilterRGB.cpp.i
+.PHONY : src/FilterRGB.i
+
+# target to preprocess a source file
+src/FilterRGB.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/FilterRGB.cpp.i
+.PHONY : src/FilterRGB.cpp.i
+
+src/FilterRGB.s: src/FilterRGB.cpp.s
+.PHONY : src/FilterRGB.s
+
+# target to generate assembly for a file
+src/FilterRGB.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/FilterRGB.cpp.s
+.PHONY : src/FilterRGB.cpp.s
+
+src/Helper.obj: src/Helper.cpp.obj
+.PHONY : src/Helper.obj
+
+# target to build an object file
+src/Helper.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/Helper.cpp.obj
+.PHONY : src/Helper.cpp.obj
+
+src/Helper.i: src/Helper.cpp.i
+.PHONY : src/Helper.i
+
+# target to preprocess a source file
+src/Helper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/Helper.cpp.i
+.PHONY : src/Helper.cpp.i
+
+src/Helper.s: src/Helper.cpp.s
+.PHONY : src/Helper.s
+
+# target to generate assembly for a file
+src/Helper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/Helper.cpp.s
+.PHONY : src/Helper.cpp.s
+
+src/ZDriver.obj: src/ZDriver.cpp.obj
+.PHONY : src/ZDriver.obj
+
+# target to build an object file
+src/ZDriver.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/ZDriver.cpp.obj
+.PHONY : src/ZDriver.cpp.obj
+
+src/ZDriver.i: src/ZDriver.cpp.i
+.PHONY : src/ZDriver.i
+
+# target to preprocess a source file
+src/ZDriver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/ZDriver.cpp.i
+.PHONY : src/ZDriver.cpp.i
+
+src/ZDriver.s: src/ZDriver.cpp.s
+.PHONY : src/ZDriver.s
+
+# target to generate assembly for a file
+src/ZDriver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/ZDriver.cpp.s
+.PHONY : src/ZDriver.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -305,18 +305,6 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... image_editor
-	@echo ... classes/FilterGS.obj
-	@echo ... classes/FilterGS.i
-	@echo ... classes/FilterGS.s
-	@echo ... classes/FilterRGB.obj
-	@echo ... classes/FilterRGB.i
-	@echo ... classes/FilterRGB.s
-	@echo ... classes/Helper.obj
-	@echo ... classes/Helper.i
-	@echo ... classes/Helper.s
-	@echo ... classes/View.obj
-	@echo ... classes/View.i
-	@echo ... classes/View.s
 	@echo ... dependency/Reader.obj
 	@echo ... dependency/Reader.i
 	@echo ... dependency/Reader.s
@@ -326,6 +314,18 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/FilterGS.obj
+	@echo ... src/FilterGS.i
+	@echo ... src/FilterGS.s
+	@echo ... src/FilterRGB.obj
+	@echo ... src/FilterRGB.i
+	@echo ... src/FilterRGB.s
+	@echo ... src/Helper.obj
+	@echo ... src/Helper.i
+	@echo ... src/Helper.s
+	@echo ... src/ZDriver.obj
+	@echo ... src/ZDriver.i
+	@echo ... src/ZDriver.s
 .PHONY : help
 
 
