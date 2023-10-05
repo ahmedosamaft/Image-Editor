@@ -25,6 +25,8 @@ public:
     static void blur();
     static void crop();
     static void skewHorizontally();
+    static void skewVertically();
+
 };
 
 

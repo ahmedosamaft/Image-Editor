@@ -240,7 +240,7 @@ void Filter::shuffleImage() {
 void Filter::blur() {
     int scale = 0;
     while (true) {
-        std::cout << "Enter a scale from 1 to 15.\n";
+        std::cout << "Enter a scale [1-15].\n";
         std::cin >> scale;
         if (scale >= 1 && scale <= 15)
             break;
@@ -310,7 +310,8 @@ void Filter::skewHorizontally() {
     double scale = tan(degree * 3.14 / 180) * 256.0;
     double toTake = 256 / (256 - scale);
     double minus = scale / 256, cur = 0, here = 0;
-    for (int row = 0; row < Constant::SIZE; row++)
+    for (int row = 0; row < Constant::SIZE; row++) {
+        here += minus, cur = 0;
         for (int col = scale - here; col < Constant::SIZE - here; col++) {
             int avg = 0, pixels = 0;
             for (int k = std::max(0, (int) ceil(cur - toTake)); k < std::min(Constant::SIZE, (int) ceil(cur + toTake)); k++)
@@ -318,8 +319,38 @@ void Filter::skewHorizontally() {
             avg /= std::max(1, pixels);
             temp[row][col] = avg;
             cur += toTake;
-            here += minus;
         }
+    }
+    for (int i = 0; i < Constant::SIZE; i++)
+        for (int j = 0; j < Constant::SIZE; j++)
+            View::imgGS[i][j] = temp[i][j];
+}
+
+void Filter::skewVertically() {
+
+    unsigned char temp[Constant::SIZE][Constant::SIZE]{};
+    int degree;
+    while (true) {
+        std::cout << "Enter the skew degree [0-45].\n";
+        std::cin >> degree;
+        if (degree >= 0 && degree <= 45)
+            break;
+        std::cout << "Invalid degree.\n";
+    }
+    double scale = tan(degree * 3.14 / 180) * 256.0;
+    double toTake = 256 / (256 - scale);
+    double minus = scale / 256, cur = 0, here = 0;
+    for (int row = 0; row < Constant::SIZE; row++) {
+        here += minus, cur = 0;
+        for (int col = scale - here; col < Constant::SIZE - here; col++) {
+            int avg = 0, pixels = 0;
+            for (int k = std::max(0, (int) ceil(cur - toTake)); k < std::min(Constant::SIZE, (int) ceil(cur + toTake)); k++)
+                pixels++, avg += View::imgGS[k][row];
+            avg /= std::max(1, pixels);
+            temp[col][row] = avg;
+            cur += toTake;
+        }
+    }
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             View::imgGS[i][j] = temp[i][j];

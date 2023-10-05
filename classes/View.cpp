@@ -62,6 +62,7 @@ void View::mainMenu() {
         else if (inp == 12) Filter::blur();
         else if (inp == 13) Filter::crop();
         else if (inp == 14) Filter::skewHorizontally();
+        else if (inp == 15) Filter::skewVertically();
         Reader::showGS(imgGS);
     }
     string path = "\\tmp\\final.bmp";
