@@ -53,7 +53,6 @@ void View::mainMenu() {
             int choice = Helper::runMenu(m);
             if (choice == 1)Filter::darken();
             else Filter::lighten();
-            Reader::showGS(imgGS);
         }
         else if (inp == 7) Filter::detectImageEdges();
         else if (inp == 8) Filter::enlargeImage();

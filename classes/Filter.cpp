@@ -6,6 +6,7 @@
 #include "../Constants.h"
 #include "View.h"
 #include <queue>
+#include <set>
 #include <tuple>
 void Filter::BW() {
     long long avg = 0;
@@ -76,7 +77,7 @@ void Filter::rotateImage() {
 void Filter::darken() {
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
-            View::imgGS[i][j] = View::imgGS[i][j] / 2;
+            View::imgGS[i][j] = View::imgGS[i][j] / 3;
 }
 
 void Filter::lighten() {
@@ -85,6 +86,9 @@ void Filter::lighten() {
             View::imgGS[i][j] = View::imgGS[i][j] + (255 - View::imgGS[i][j]) / 2;
 }
 
+int dirx[]{1, -1, 0, 0};
+int diry[]{0, 0, 1, -1};
+
 bool valid(int i, int j) {
     return i >= 0 && j >= 0 && i < Constant::SIZE && j < Constant::SIZE;
 }
@@ -92,8 +96,6 @@ bool valid(int i, int j) {
 void Filter::detectImageEdges() {
     unsigned char temp[Constant::SIZE][Constant::SIZE];
     bool vis[Constant::SIZE][Constant::SIZE]{};
-    int dirx[]{1, -1, 0, 0};
-    int diry[]{0, 0, 1, -1};
     std::queue<std::pair<int, int>> q;
     int i, j;
     vis[0][0] = 1;
@@ -189,36 +191,99 @@ void Filter::mirrorImage() {
 }
 
 void Filter::shuffleImage() {
+    unsigned char quarters[4][Constant::SIZE / 2][Constant::SIZE / 2];
+    for (int i = 0; i < Constant::SIZE; i++)
+        for (int j = 0; j < Constant::SIZE; j++)
+            if (i < Constant::SIZE / 2 && j < Constant::SIZE / 2)
+                quarters[0][i][j] = View::imgGS[i][j];
+            else if (i < Constant::SIZE / 2 && j >= Constant::SIZE / 2)
+                quarters[1][i][j - Constant::SIZE / 2] = View::imgGS[i][j];
+            else if (i >= Constant::SIZE / 2 && j < Constant::SIZE / 2)
+                quarters[2][i - Constant::SIZE / 2][j] = View::imgGS[i][j];
+            else
+                quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2] = View::imgGS[i][j];
+    int order[4];
+    while (true) {
+        std::cout << "Enter the order of the quarters.\n";
+        std::set<int> s;
+        int input;
+        for (int i = 0; i < 4; i++)
+            std::cin >> input, s.insert(input), order[i] = input - 1;
+        bool valid = 1;
+        int nxt = 1;
+        for (auto i: s)
+            if (i != nxt)
+                valid = 0;
+            else
+                nxt++;
+        if (!valid || s.size() != 4)
+            std::cout << "Invalid order.\n";
+        else
+            break;
+    }
+    for (int i = 0; i < 4; i++)
+        for (int j = i + 1; j < 4; j++)
+            if (j == order[i])
+                std::swap(quarters[i], quarters[j]);
+    for (int i = 0; i < Constant::SIZE; i++)
+        for (int j = 0; j < Constant::SIZE; j++)
+            if (i < Constant::SIZE / 2 && j < Constant::SIZE / 2)
+                View::imgGS[i][j] = quarters[0][i % (Constant::SIZE / 2)][j % (Constant::SIZE / 2)];
+            else if (i < Constant::SIZE / 2 && j >= Constant::SIZE / 2)
+                View::imgGS[i][j] = quarters[1][i % (Constant::SIZE / 2)][j % (Constant::SIZE / 2)];
+            else if (i >= Constant::SIZE / 2 && j < Constant::SIZE / 2)
+                View::imgGS[i][j] = quarters[2][i % (Constant::SIZE / 2)][j % (Constant::SIZE / 2)];
+            else
+                View::imgGS[i][j] = quarters[3][i % (Constant::SIZE / 2)][j % (Constant::SIZE / 2)];
 }
 
 
 void Filter::blur() {
     unsigned char temp[Constant::SIZE][Constant::SIZE]{};
-    int dx[]{1, -1, 0, 0, 1, -1, -1, 1,2,2,2,-2,-2,-2,0,1,-1,0,1,-1,};
-    int dy[]{0, 0, 1, -1, 1, -1, 1, -1,0,1,-1,0,1,-1,2,2,2,-2,-2,-2};
-    for (int i = 0; i < Constant::SIZE; ++i) {
+    for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j) {
-            int total = View::imgGS[i][j];
-            for (int k = 0; k < 19; ++k) {
-                int x = i + dx[k],y = j + dy[k];
-                if (valid(x, y)) {
-                    total += View::imgGS[x][y];
+            std::queue<std::pair<int, int>> q;
+            std::set<std::pair<int, int>> pixels;
+            q.emplace(i, j);
+            pixels.emplace(i, j);
+            int total = View::imgGS[i][j], distance = 5, curI, curJ;
+            while (distance--) {
+                int sz = q.size();
+                for (int k = 0; k < sz; k++) {
+                    std::tie(curI, curJ) = q.front();
+                    q.pop();
+                    for (int dir = 0; dir < 4; dir++) {
+                        int x = curI + dirx[dir];
+                        int y = curJ + diry[dir];
+                        if (valid(x, y) && !pixels.count({x, y})) {
+                            q.emplace(x, y);
+                            pixels.emplace(x, y);
+                            total += View::imgGS[x][y];
+                        }
+                    }
                 }
             }
-            temp[i][j] = total / 21;
+            total /= pixels.size();
+            temp[i][j] = total;
         }
-    }
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             View::imgGS[i][j] = temp[i][j];
 }
+
 void Filter::crop() {
-    printf("Please enter x1 y1 x2 y2 (top left & bottom right): ");
+    int x1, y1, x2, y2;
+    while (true) {
+        printf("Please enter x1 y1 x2 y2 (top left & bottom right): ");
+        std::cin >> x1 >> y1 >> x2 >> y2;
+        if (!valid(x1, y1) || !valid(x2, y2) || x1 > x2 || y1 > y2)
+            std::cout << "Invalid input.\n";
+        else
+            break;
+    }
     unsigned char temp[Constant::SIZE][Constant::SIZE]{};
-    int x1,y1,x2,y2;
-    std::cin >> x1 >> y1 >> x2 >> y2;
     for (int row = x1; row <= x2; ++row)
-        for (int col = y1; col < y2; ++col)
+        for (int col = y1; col <= y2; ++col)
             temp[row][col] = View::imgGS[row][col];
 
     for (int i = 0; i < Constant::SIZE; i++)
