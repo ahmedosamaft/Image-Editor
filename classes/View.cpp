@@ -3,12 +3,12 @@
 //
 
 #include "View.h"
-#include "FilterGS.h"
-#include "Helper.h"
 
 std::string View::imgName = std::string();
 unsigned char View::imgGS[Constant::SIZE][Constant::SIZE] = {};
+unsigned char View::initialGS[Constant::SIZE][Constant::SIZE] = {};
 unsigned char View::imgRGB[Constant::SIZE][Constant::SIZE][3] = {};
+unsigned char View::initialRGB[Constant::SIZE][Constant::SIZE][3] = {};
 
 std::vector<std::string> View::menu = {
         "Black & White FilterGS",
@@ -16,7 +16,8 @@ std::vector<std::string> View::menu = {
         "Merge Image",
         "Flip Image",
         "Rotate Image",
-        "Darken or Lighten Image",
+        "Darken Image",
+        "Lighten Image",
         "Detect Image Edges",
         "Enlarge Image",
         "Shrink Image",
@@ -26,58 +27,65 @@ std::vector<std::string> View::menu = {
         "Crop Image",
         "Skew Image Horizontally",
         "Skew Image Vertically",
-        "Save the image to a file"
-};
+        "Back to Initial Image",
+        "Save the image to a file"};
 
 void View::mainMenu() {
     using namespace std;
-    cout << "Hey Boy!\n"
-         << "Please enter file name of the image to process (MUST BE IN imgs FOLDER):";
+    int choice = Helper::runMenu({"Grayscale", "RGB"});
+    cout << "Please enter file name of the image to process (MUST BE IN imgs FOLDER):";
     cin >> imgName;
     imgName = "\\imgs\\" + imgName;
     char cwd[PATH_MAX];
-    Reader::readGS(strcat(getcwd(cwd, sizeof(cwd)), imgName.c_str()), imgGS);
+    if (choice == 1)
+        Reader::readGS(strcat(getcwd(cwd, sizeof(cwd)), imgName.c_str()), initialGS);
+    else
+        Reader::readRGB(strcat(getcwd(cwd, sizeof(cwd)), imgName.c_str()), initialRGB);
+    Helper::getInitialImage(choice);
+
     while (true) {
         cout << "Please select a filter to apply or 0 to exit:\n";
         int inp = Helper::runMenu(menu);
         if (inp == 0) break;
         else if (inp == 1)
-            FilterGS::BW();
+            (choice == 1) ? FilterGS::BW() : FilterRGB::BW();
         else if (inp == 2)
-            FilterGS::invert();
+            (choice == 1) ? FilterGS::invert() : FilterRGB::invert();
         else if (inp == 3)
-            FilterGS::mergeImages();
+            (choice == 1) ? FilterGS::mergeImages() : FilterRGB::mergeImages();
         else if (inp == 4)
-            FilterGS::flip();
+            (choice == 1) ? FilterGS::flip() : FilterRGB::flip();
         else if (inp == 5)
-            FilterGS::rotateImage();
-        else if (inp == 6) {
-            std::vector<std::string> m{"Darken", "Lighten"};
-            int choice = Helper::runMenu(m);
-            if (choice == 1) FilterGS::darken();
-            else
-                FilterGS::lighten();
-        }
+            (choice == 1) ? FilterGS::rotateImage() : FilterRGB::rotateImage();
+        else if (inp == 6)
+            (choice == 1) ? FilterGS::darken() : FilterRGB::darken();
         else if (inp == 7)
-            FilterGS::detectImageEdges();
+            (choice == 1) ? FilterGS::lighten() : FilterRGB::lighten();
         else if (inp == 8)
-            FilterGS::enlargeImage();
+            (choice == 1) ? FilterGS::detectImageEdges() : FilterRGB::detectImageEdges();
         else if (inp == 9)
-            FilterGS::shrinkImage();
+            (choice == 1) ? FilterGS::enlargeImage() : FilterRGB::enlargeImage();
         else if (inp == 10)
-            FilterGS::mirrorImage();
+            (choice == 1) ? FilterGS::shrinkImage() : FilterRGB::shrinkImage();
         else if (inp == 11)
-            FilterGS::shuffleImage();
+            (choice == 1) ? FilterGS::mirrorImage() : FilterRGB::mirrorImage();
         else if (inp == 12)
-            FilterGS::blur();
+            (choice == 1) ? FilterGS::shuffleImage() : FilterRGB::shuffleImage();
         else if (inp == 13)
-            FilterGS::crop();
+            (choice == 1) ? FilterGS::blur() : FilterRGB::blur();
         else if (inp == 14)
-            FilterGS::skewHorizontally();
+            (choice == 1) ? FilterGS::crop() : FilterRGB::crop();
         else if (inp == 15)
-            FilterGS::skewVertically();
-        Reader::showGS(imgGS);
+            (choice == 1) ? FilterGS::skewHorizontally() : FilterRGB::skewHorizontally();
+        else if (inp == 16)
+            (choice == 1) ? FilterGS::skewVertically() : FilterRGB::skewVertically();
+        else if (inp == 17)
+            Helper::getInitialImage(choice);
+        (choice == 1) ? Reader::showGS(imgGS) : Reader::showRGB(imgRGB);
     }
     string path = "\\tmp\\final.bmp";
-    Reader::writeGS(strcat(getcwd(cwd, sizeof(cwd)), path.c_str()), imgGS);
+    if (choice == 1)
+        Reader::writeGS(strcat(getcwd(cwd, sizeof(cwd)), path.c_str()), imgGS);
+    else
+        Reader::writeRGB(strcat(getcwd(cwd, sizeof(cwd)), path.c_str()), imgRGB);
 }

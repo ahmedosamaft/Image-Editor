@@ -5,15 +5,12 @@
 #ifndef IMAGE_EDITOR_FILTERGS_H
 #define IMAGE_EDITOR_FILTERGS_H
 
-#include "../Constants.h"
 #include "View.h"
-#include <cmath>
-#include <queue>
-#include <set>
-#include <tuple>
 
 class FilterGS {
 public:
+    inline static int dirx[] = {1, -1, 0, 0};
+    inline static int diry[] = {0, 0, 1, -1};
     static void BW();
     static void invert();
     static void mergeImages();
@@ -30,6 +27,7 @@ public:
     static void crop();
     static void skewHorizontally();
     static void skewVertically();
+    static bool valid(int i, int j);
 
 };
 

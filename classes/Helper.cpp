@@ -3,7 +3,7 @@
 //
 
 #include "Helper.h"
-#include <iostream>
+#include "View.h"
 
 int Helper::runMenu(const std::vector<std::string> &menu) {
     for (int i = 0; i < menu.size(); ++i) {
@@ -20,4 +20,22 @@ int Helper::runMenu(const std::vector<std::string> &menu) {
         } else
             return inp;
     }
+}
+
+void Helper::getInitialImage(int &choice) {
+    if (choice == 1) {
+        for (int i = 0; i < Constant::SIZE; ++i) {
+            for (int j = 0; j < Constant::SIZE; ++j) {
+                View::imgGS[i][j] = View::initialGS[i][j];
+            }
+        }
+    } else {
+        for (int i = 0; i < Constant::SIZE; ++i) {
+            for (int j = 0; j < Constant::SIZE; ++j) {
+                for (int k = 0; k < Constant::RGB; ++k) {
+                    View::imgRGB[i][j][k] = View::initialRGB[i][j][k];
+                }
+            }
+        }
+    };
 }

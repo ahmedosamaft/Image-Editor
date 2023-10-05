@@ -5,13 +5,14 @@
 #ifndef IMAGE_EDITOR_HELPER_H
 #define IMAGE_EDITOR_HELPER_H
 
-
-#include <string>
 #include <vector>
+#include <string>
+
 
 class Helper {
 public:
-    static int runMenu(const std::vector<std::string>& menu);
+    static int runMenu(const std::vector<std::string> &menu);
+    static void getInitialImage(int &choice);
 };
 
 

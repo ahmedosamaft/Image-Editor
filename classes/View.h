@@ -9,25 +9,23 @@
 #include "../Constants.h"
 #include "../dependency/Reader.h"
 #include "FilterGS.h"
+#include "FilterRGB.h"
 #include "Helper.h"
+#include <cmath>
 #include <direct.h>
 #include <iostream>
-#include <string>
-#include <vector>
-#include "View.h"
-#include <cmath>
 #include <queue>
 #include <set>
+#include <string>
 #include <tuple>
-#include <direct.h>
-#include <iostream>
+#include <vector>
 
 class View {
 public:
     static std::string imgName;
     static std::vector<std::string> menu;
-    static unsigned char imgGS[Constant::SIZE][Constant::SIZE];
-    static unsigned char imgRGB[Constant::SIZE][Constant::SIZE][3];
+    static unsigned char imgGS[Constant::SIZE][Constant::SIZE], initialGS[Constant::SIZE][Constant::SIZE];
+    static unsigned char imgRGB[Constant::SIZE][Constant::SIZE][3], initialRGB[Constant::SIZE][Constant::SIZE][3];
     static void mainMenu();
 };
 

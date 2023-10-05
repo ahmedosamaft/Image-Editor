@@ -25,8 +25,7 @@ void FilterGS::invert() {
 }
 
 void FilterGS::mergeImages() {
-    std::cout << "Hey Boy!\n"
-              << "Please enter file name of the image to process (MUST BE IN imgs FOLDER):";
+    std::cout << "Please enter file name of the image to process (MUST BE IN imgs FOLDER):";
     std::string imgName;
     std::cin >> imgName;
     imgName = "\\imgs\\" + imgName;
@@ -98,10 +97,7 @@ void FilterGS::lighten() {
             View::imgGS[i][j] = View::imgGS[i][j] + (255 - View::imgGS[i][j]) / scale;
 }
 
-int dirx[]{1, -1, 0, 0};
-int diry[]{0, 0, 1, -1};
-
-bool valid(int i, int j) {
+bool FilterGS::valid(int i, int j) {
     return i >= 0 && j >= 0 && i < Constant::SIZE && j < Constant::SIZE;
 }
 
