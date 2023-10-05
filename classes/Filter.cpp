@@ -307,12 +307,20 @@ void Filter::skewHorizontally() {
         std::cout << "Invalid degree.\n";
     }
     unsigned char temp[Constant::SIZE][Constant::SIZE]{};
-    int scale = tan(degree * 3.14 / 180) * 256.0 / 45;
-    int minus = 256 / scale, cur = 0;
-    for (int i = 0; i < Constant::SIZE; i++)
-        for (int j = 0; j < Constant::SIZE; j++) {
-            if (j < scale - minus||j>Constant::SIZE-(sca))
-                continue;
-            temp[i][j] = View::imgGS[i][cur] + View::imgGS[i][cur++];
+    double scale = tan(degree * 3.14 / 180) * 256.0;
+    double toTake = 256 / (256 - scale);
+    double minus = scale / 256, cur = 0, here = 0;
+    for (int row = 0; row < Constant::SIZE; row++)
+        for (int col = scale - here; col < Constant::SIZE - here; col++) {
+            int avg = 0, pixels = 0;
+            for (int k = std::max(0, (int) ceil(cur - toTake)); k < std::min(Constant::SIZE, (int) ceil(cur + toTake)); k++)
+                pixels++, avg += View::imgGS[row][k];
+            avg /= std::max(1, pixels);
+            temp[row][col] = avg;
+            cur += toTake;
+            here += minus;
         }
+    for (int i = 0; i < Constant::SIZE; i++)
+        for (int j = 0; j < Constant::SIZE; j++)
+            View::imgGS[i][j] = temp[i][j];
 }
