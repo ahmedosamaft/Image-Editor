@@ -14,6 +14,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "View.h"
+#include <cmath>
+#include <queue>
+#include <set>
+#include <tuple>
 
 class View {
 public:
