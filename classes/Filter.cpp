@@ -64,10 +64,8 @@ void Filter::rotateImage() {
                 temp[i][j] = View::imgGS[j][255 - i];
             else if (Degree == 2)
                 temp[i][j] = View::imgGS[255 - i][255 - j];
-            else if (Degree == 3)
-                temp[i][j] = View::imgGS[255 - j][i];
             else
-                return;
+                temp[i][j] = View::imgGS[255 - j][i];
 
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
@@ -228,25 +226,26 @@ void Filter::shuffleImage() {
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             if (i < Constant::SIZE / 2 && j < Constant::SIZE / 2)
-                View::imgGS[i][j] = quarters[0][i % (Constant::SIZE / 2)][j % (Constant::SIZE / 2)];
+                View::imgGS[i][j] = quarters[0][i][j];
             else if (i < Constant::SIZE / 2 && j >= Constant::SIZE / 2)
-                View::imgGS[i][j] = quarters[1][i % (Constant::SIZE / 2)][j % (Constant::SIZE / 2)];
+                View::imgGS[i][j] = quarters[1][i][j - Constant::SIZE / 2];
             else if (i >= Constant::SIZE / 2 && j < Constant::SIZE / 2)
-                View::imgGS[i][j] = quarters[2][i % (Constant::SIZE / 2)][j % (Constant::SIZE / 2)];
+                View::imgGS[i][j] = quarters[2][i - Constant::SIZE / 2][j];
             else
-                View::imgGS[i][j] = quarters[3][i % (Constant::SIZE / 2)][j % (Constant::SIZE / 2)];
+                View::imgGS[i][j] = quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2];
 }
 
 
 void Filter::blur() {
     unsigned char temp[Constant::SIZE][Constant::SIZE]{};
+    int vis[Constant::SIZE][Constant::SIZE]{}, vid;
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j) {
+            vid++;
             std::queue<std::pair<int, int>> q;
-            std::set<std::pair<int, int>> pixels;
             q.emplace(i, j);
-            pixels.emplace(i, j);
-            int total = View::imgGS[i][j], distance = 5, curI, curJ;
+            vis[i][j] = vid;
+            int total = View::imgGS[i][j], distance = 5, curI, curJ, pixels = 1;
             while (distance--) {
                 int sz = q.size();
                 for (int k = 0; k < sz; k++) {
@@ -255,15 +254,16 @@ void Filter::blur() {
                     for (int dir = 0; dir < 4; dir++) {
                         int x = curI + dirx[dir];
                         int y = curJ + diry[dir];
-                        if (valid(x, y) && !pixels.count({x, y})) {
+                        if (valid(x, y) && vis[x][y] != vid) {
                             q.emplace(x, y);
-                            pixels.emplace(x, y);
+                            vis[x][y] = vid;
+                            pixels++;
                             total += View::imgGS[x][y];
                         }
                     }
                 }
             }
-            total /= pixels.size();
+            total /= pixels;
             temp[i][j] = total;
         }
     for (int i = 0; i < Constant::SIZE; i++)
