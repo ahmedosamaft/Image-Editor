@@ -5,8 +5,6 @@
 #include "View.h"
 #include "FilterGS.h"
 #include "Helper.h"
-#include <direct.h>
-#include <iostream>
 
 std::string View::imgName = std::string();
 unsigned char View::imgGS[Constant::SIZE][Constant::SIZE] = {};

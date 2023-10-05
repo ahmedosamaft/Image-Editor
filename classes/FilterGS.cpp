@@ -3,12 +3,7 @@
 //
 
 #include "FilterGS.h"
-#include "../Constants.h"
-#include "View.h"
-#include <cmath>
-#include <queue>
-#include <set>
-#include <tuple>
+
 void FilterGS::BW() {
     long long avg = 0;
     for (int i = 0; i < Constant::SIZE; ++i)
