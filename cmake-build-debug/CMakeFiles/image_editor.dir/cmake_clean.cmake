@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/image_editor.dir/classes/Filter.cpp.obj"
-  "CMakeFiles/image_editor.dir/classes/Filter.cpp.obj.d"
+  "CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj"
+  "CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj.d"
+  "CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj"
+  "CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj.d"
   "CMakeFiles/image_editor.dir/classes/Helper.cpp.obj"
   "CMakeFiles/image_editor.dir/classes/Helper.cpp.obj.d"
   "CMakeFiles/image_editor.dir/classes/View.cpp.obj"

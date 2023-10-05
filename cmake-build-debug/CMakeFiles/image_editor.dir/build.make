@@ -138,19 +138,33 @@ CMakeFiles/image_editor.dir/classes/Helper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/image_editor.dir/classes/Helper.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\projects\Image-Editor\classes\Helper.cpp -o CMakeFiles\image_editor.dir\classes\Helper.cpp.s
 
-CMakeFiles/image_editor.dir/classes/Filter.cpp.obj: CMakeFiles/image_editor.dir/flags.make
-CMakeFiles/image_editor.dir/classes/Filter.cpp.obj: C:/projects/Image-Editor/classes/Filter.cpp
-CMakeFiles/image_editor.dir/classes/Filter.cpp.obj: CMakeFiles/image_editor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\projects\Image-Editor\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/image_editor.dir/classes/Filter.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/image_editor.dir/classes/Filter.cpp.obj -MF CMakeFiles\image_editor.dir\classes\Filter.cpp.obj.d -o CMakeFiles\image_editor.dir\classes\Filter.cpp.obj -c C:\projects\Image-Editor\classes\Filter.cpp
+CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj: CMakeFiles/image_editor.dir/flags.make
+CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj: C:/projects/Image-Editor/classes/FilterGS.cpp
+CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj: CMakeFiles/image_editor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\projects\Image-Editor\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj -MF CMakeFiles\image_editor.dir\classes\FilterGS.cpp.obj.d -o CMakeFiles\image_editor.dir\classes\FilterGS.cpp.obj -c C:\projects\Image-Editor\classes\FilterGS.cpp
 
-CMakeFiles/image_editor.dir/classes/Filter.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/image_editor.dir/classes/Filter.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\projects\Image-Editor\classes\Filter.cpp > CMakeFiles\image_editor.dir\classes\Filter.cpp.i
+CMakeFiles/image_editor.dir/classes/FilterGS.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/image_editor.dir/classes/FilterGS.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\projects\Image-Editor\classes\FilterGS.cpp > CMakeFiles\image_editor.dir\classes\FilterGS.cpp.i
 
-CMakeFiles/image_editor.dir/classes/Filter.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/image_editor.dir/classes/Filter.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\projects\Image-Editor\classes\Filter.cpp -o CMakeFiles\image_editor.dir\classes\Filter.cpp.s
+CMakeFiles/image_editor.dir/classes/FilterGS.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/image_editor.dir/classes/FilterGS.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\projects\Image-Editor\classes\FilterGS.cpp -o CMakeFiles\image_editor.dir\classes\FilterGS.cpp.s
+
+CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj: CMakeFiles/image_editor.dir/flags.make
+CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj: C:/projects/Image-Editor/classes/FilterRGB.cpp
+CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj: CMakeFiles/image_editor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\projects\Image-Editor\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj -MF CMakeFiles\image_editor.dir\classes\FilterRGB.cpp.obj.d -o CMakeFiles\image_editor.dir\classes\FilterRGB.cpp.obj -c C:\projects\Image-Editor\classes\FilterRGB.cpp
+
+CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\projects\Image-Editor\classes\FilterRGB.cpp > CMakeFiles\image_editor.dir\classes\FilterRGB.cpp.i
+
+CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\projects\Image-Editor\classes\FilterRGB.cpp -o CMakeFiles\image_editor.dir\classes\FilterRGB.cpp.s
 
 # Object files for target image_editor
 image_editor_OBJECTS = \
@@ -159,7 +173,8 @@ image_editor_OBJECTS = \
 "CMakeFiles/image_editor.dir/dependency/bmplib.cpp.obj" \
 "CMakeFiles/image_editor.dir/classes/View.cpp.obj" \
 "CMakeFiles/image_editor.dir/classes/Helper.cpp.obj" \
-"CMakeFiles/image_editor.dir/classes/Filter.cpp.obj"
+"CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj" \
+"CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj"
 
 # External object files for target image_editor
 image_editor_EXTERNAL_OBJECTS =
@@ -169,12 +184,13 @@ image_editor.exe: CMakeFiles/image_editor.dir/dependency/Reader.cpp.obj
 image_editor.exe: CMakeFiles/image_editor.dir/dependency/bmplib.cpp.obj
 image_editor.exe: CMakeFiles/image_editor.dir/classes/View.cpp.obj
 image_editor.exe: CMakeFiles/image_editor.dir/classes/Helper.cpp.obj
-image_editor.exe: CMakeFiles/image_editor.dir/classes/Filter.cpp.obj
+image_editor.exe: CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj
+image_editor.exe: CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj
 image_editor.exe: CMakeFiles/image_editor.dir/build.make
 image_editor.exe: CMakeFiles/image_editor.dir/linkLibs.rsp
 image_editor.exe: CMakeFiles/image_editor.dir/objects1
 image_editor.exe: CMakeFiles/image_editor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\projects\Image-Editor\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable image_editor.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\projects\Image-Editor\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable image_editor.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\image_editor.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -2,14 +2,14 @@
 // Created by andro on 10/4/2023.
 //
 
-#include "Filter.h"
+#include "FilterGS.h"
 #include "../Constants.h"
 #include "View.h"
 #include <cmath>
 #include <queue>
 #include <set>
 #include <tuple>
-void Filter::BW() {
+void FilterGS::BW() {
     long long avg = 0;
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
@@ -22,13 +22,13 @@ void Filter::BW() {
                 View::imgGS[i][j] = 255;
 }
 
-void Filter::invert() {
+void FilterGS::invert() {
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
             View::imgGS[i][j] = 255 - View::imgGS[i][j];
 }
 
-void Filter::mergeImages() {
+void FilterGS::mergeImages() {
     std::cout << "Hey Boy!\n"
               << "Please enter file name of the image to process (MUST BE IN imgs FOLDER):";
     std::string imgName;
@@ -42,7 +42,7 @@ void Filter::mergeImages() {
             View::imgGS[i][j] = (View::imgGS[i][j] + secondImgGS[i][j]) / 2;
 }
 
-void Filter::flip() {
+void FilterGS::flip() {
     std::vector<std::string> menu{"Horizontal Flip", "Vertical Flip"};
     int choice = Helper::runMenu(menu);
     if (choice == 1)
@@ -55,7 +55,7 @@ void Filter::flip() {
                 std::swap(View::imgGS[i][j], View::imgGS[i][Constant::SIZE - j - 1]);
 }
 
-void Filter::rotateImage() {
+void FilterGS::rotateImage() {
     std::vector<std::string> munu{"90 Degree", "180 Degree", "270 Degree"};
     int Degree = Helper::runMenu(munu);
     unsigned char temp[Constant::SIZE][Constant::SIZE];
@@ -73,7 +73,7 @@ void Filter::rotateImage() {
             View::imgGS[i][j] = temp[i][j];
 }
 
-void Filter::darken() {
+void FilterGS::darken() {
     int scale;
     while (true) {
         std::cout << "Enter a scale [1-5].\n";
@@ -87,7 +87,7 @@ void Filter::darken() {
             View::imgGS[i][j] = View::imgGS[i][j] / scale;
 }
 
-void Filter::lighten() {
+void FilterGS::lighten() {
     int scale;
     while (true) {
         std::cout << "Enter a scale [1-5].\n";
@@ -109,7 +109,7 @@ bool valid(int i, int j) {
     return i >= 0 && j >= 0 && i < Constant::SIZE && j < Constant::SIZE;
 }
 
-void Filter::detectImageEdges() {
+void FilterGS::detectImageEdges() {
     unsigned char temp[Constant::SIZE][Constant::SIZE];
     bool vis[Constant::SIZE][Constant::SIZE]{};
     std::queue<std::pair<int, int>> q;
@@ -141,7 +141,7 @@ void Filter::detectImageEdges() {
             View::imgGS[i][j] = temp[i][j];
 }
 
-void Filter::enlargeImage() {
+void FilterGS::enlargeImage() {
     std::vector<std::string> menu{"First quarter", "Second quarter", "Third quarter", "Fourth quarter"};
     int quarter = Helper::runMenu(menu);
     unsigned char temp[Constant::SIZE][Constant::SIZE];
@@ -161,7 +161,7 @@ void Filter::enlargeImage() {
             View::imgGS[i][j] = temp[i][j];
 }
 
-void Filter::shrinkImage() {
+void FilterGS::shrinkImage() {
     unsigned char temp[Constant::SIZE][Constant::SIZE]{};
     std::vector<std::string> menu{"1/2", "1/3", "1/4"};
     int dimension = Helper::runMenu(menu);
@@ -185,7 +185,7 @@ void Filter::shrinkImage() {
             View::imgGS[i][j] = temp[i][j];
 }
 
-void Filter::mirrorImage() {
+void FilterGS::mirrorImage() {
     std::vector<std::string> menu{"Left", "Right", "Upper", "Lower"};
     int option = Helper::runMenu(menu);
     if (option == 1)
@@ -206,7 +206,7 @@ void Filter::mirrorImage() {
                 View::imgGS[i][j] = View::imgGS[Constant::SIZE - i + 1][j];
 }
 
-void Filter::shuffleImage() {
+void FilterGS::shuffleImage() {
     unsigned char quarters[4][Constant::SIZE / 2][Constant::SIZE / 2];
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
@@ -254,7 +254,7 @@ void Filter::shuffleImage() {
 }
 
 
-void Filter::blur() {
+void FilterGS::blur() {
     int scale = 0;
     while (true) {
         std::cout << "Enter a scale [1-15].\n";
@@ -297,7 +297,7 @@ void Filter::blur() {
             View::imgGS[i][j] = temp[i][j];
 }
 
-void Filter::crop() {
+void FilterGS::crop() {
     int x1, y1, x2, y2;
     while (true) {
         printf("Please enter x1 y1 x2 y2 (top left & bottom right): ");
@@ -314,7 +314,7 @@ void Filter::crop() {
                 View::imgGS[i][j] = 0;
 }
 
-void Filter::skewHorizontally() {
+void FilterGS::skewHorizontally() {
     int degree;
     while (true) {
         std::cout << "Enter the skew degree [0-45].\n";
@@ -343,7 +343,7 @@ void Filter::skewHorizontally() {
             View::imgGS[i][j] = temp[i][j];
 }
 
-void Filter::skewVertically() {
+void FilterGS::skewVertically() {
 
     unsigned char temp[Constant::SIZE][Constant::SIZE]{};
     int degree;

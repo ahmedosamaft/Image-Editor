@@ -2,13 +2,13 @@
 // Created by andro on 10/4/2023.
 //
 
-#ifndef IMAGE_EDITOR_FILTER_H
-#define IMAGE_EDITOR_FILTER_H
+#ifndef IMAGE_EDITOR_FILTERGS_H
+#define IMAGE_EDITOR_FILTERGS_H
 
 #include "../Constants.h"
 #include "View.h"
 
-class Filter {
+class FilterGS {
 public:
     static void BW();
     static void invert();
@@ -30,4 +30,4 @@ public:
 };
 
 
-#endif//IMAGE_EDITOR_FILTER_H
+#endif//IMAGE_EDITOR_FILTERGS_H

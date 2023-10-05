@@ -128,29 +128,53 @@ image_editor/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/build
 .PHONY : image_editor/fast
 
-classes/Filter.obj: classes/Filter.cpp.obj
-.PHONY : classes/Filter.obj
+classes/FilterGS.obj: classes/FilterGS.cpp.obj
+.PHONY : classes/FilterGS.obj
 
 # target to build an object file
-classes/Filter.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/Filter.cpp.obj
-.PHONY : classes/Filter.cpp.obj
+classes/FilterGS.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj
+.PHONY : classes/FilterGS.cpp.obj
 
-classes/Filter.i: classes/Filter.cpp.i
-.PHONY : classes/Filter.i
+classes/FilterGS.i: classes/FilterGS.cpp.i
+.PHONY : classes/FilterGS.i
 
 # target to preprocess a source file
-classes/Filter.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/Filter.cpp.i
-.PHONY : classes/Filter.cpp.i
+classes/FilterGS.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterGS.cpp.i
+.PHONY : classes/FilterGS.cpp.i
 
-classes/Filter.s: classes/Filter.cpp.s
-.PHONY : classes/Filter.s
+classes/FilterGS.s: classes/FilterGS.cpp.s
+.PHONY : classes/FilterGS.s
 
 # target to generate assembly for a file
-classes/Filter.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/Filter.cpp.s
-.PHONY : classes/Filter.cpp.s
+classes/FilterGS.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterGS.cpp.s
+.PHONY : classes/FilterGS.cpp.s
+
+classes/FilterRGB.obj: classes/FilterRGB.cpp.obj
+.PHONY : classes/FilterRGB.obj
+
+# target to build an object file
+classes/FilterRGB.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj
+.PHONY : classes/FilterRGB.cpp.obj
+
+classes/FilterRGB.i: classes/FilterRGB.cpp.i
+.PHONY : classes/FilterRGB.i
+
+# target to preprocess a source file
+classes/FilterRGB.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.i
+.PHONY : classes/FilterRGB.cpp.i
+
+classes/FilterRGB.s: classes/FilterRGB.cpp.s
+.PHONY : classes/FilterRGB.s
+
+# target to generate assembly for a file
+classes/FilterRGB.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.s
+.PHONY : classes/FilterRGB.cpp.s
 
 classes/Helper.obj: classes/Helper.cpp.obj
 .PHONY : classes/Helper.obj
@@ -281,9 +305,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... image_editor
-	@echo ... classes/Filter.obj
-	@echo ... classes/Filter.i
-	@echo ... classes/Filter.s
+	@echo ... classes/FilterGS.obj
+	@echo ... classes/FilterGS.i
+	@echo ... classes/FilterGS.s
+	@echo ... classes/FilterRGB.obj
+	@echo ... classes/FilterRGB.i
+	@echo ... classes/FilterRGB.s
 	@echo ... classes/Helper.obj
 	@echo ... classes/Helper.i
 	@echo ... classes/Helper.s

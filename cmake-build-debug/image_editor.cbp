@@ -85,10 +85,16 @@
 		<Unit filename="C:/projects/Image-Editor/Constants.h">
 			<Option target="image_editor"/>
 		</Unit>
-		<Unit filename="C:/projects/Image-Editor/classes/Filter.cpp">
+		<Unit filename="C:/projects/Image-Editor/classes/FilterGS.cpp">
 			<Option target="image_editor"/>
 		</Unit>
-		<Unit filename="C:/projects/Image-Editor/classes/Filter.h">
+		<Unit filename="C:/projects/Image-Editor/classes/FilterGS.h">
+			<Option target="image_editor"/>
+		</Unit>
+		<Unit filename="C:/projects/Image-Editor/classes/FilterRGB.cpp">
+			<Option target="image_editor"/>
+		</Unit>
+		<Unit filename="C:/projects/Image-Editor/classes/FilterRGB.h">
 			<Option target="image_editor"/>
 		</Unit>
 		<Unit filename="C:/projects/Image-Editor/classes/Helper.cpp">

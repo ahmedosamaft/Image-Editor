@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/projects/Image-Editor/classes/Filter.cpp" "CMakeFiles/image_editor.dir/classes/Filter.cpp.obj" "gcc" "CMakeFiles/image_editor.dir/classes/Filter.cpp.obj.d"
+  "C:/projects/Image-Editor/classes/FilterGS.cpp" "CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj" "gcc" "CMakeFiles/image_editor.dir/classes/FilterGS.cpp.obj.d"
+  "C:/projects/Image-Editor/classes/FilterRGB.cpp" "CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj" "gcc" "CMakeFiles/image_editor.dir/classes/FilterRGB.cpp.obj.d"
   "C:/projects/Image-Editor/classes/Helper.cpp" "CMakeFiles/image_editor.dir/classes/Helper.cpp.obj" "gcc" "CMakeFiles/image_editor.dir/classes/Helper.cpp.obj.d"
   "C:/projects/Image-Editor/classes/View.cpp" "CMakeFiles/image_editor.dir/classes/View.cpp.obj" "gcc" "CMakeFiles/image_editor.dir/classes/View.cpp.obj.d"
   "C:/projects/Image-Editor/dependency/Reader.cpp" "CMakeFiles/image_editor.dir/dependency/Reader.cpp.obj" "gcc" "CMakeFiles/image_editor.dir/dependency/Reader.cpp.obj.d"

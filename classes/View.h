@@ -8,12 +8,12 @@
 
 #include "../Constants.h"
 #include "../dependency/Reader.h"
-#include <string>
-#include <vector>
-#include "Filter.h"
+#include "FilterGS.h"
 #include "Helper.h"
 #include <direct.h>
 #include <iostream>
+#include <string>
+#include <vector>
 
 class View {
 public:
