@@ -17,14 +17,14 @@ void Reader::showRGB(unsigned char (*inputImage)[SIZE][RGB]) {
     return showRGBBMP(inputImage);
 }
 
-int Reader::readGS(std::string filename, unsigned char (*image)[256]) {
+int Reader::readGS(std::string filename, unsigned char (*image)[SIZE]) {
     return readGSBMP(filename.c_str(), image);
 }
 
-int Reader::writeGS(std::string filename, unsigned char (*image)[256]) {
+int Reader::writeGS(std::string filename, unsigned char (*image)[SIZE]) {
     return writeGSBMP(filename.c_str(), image);
 }
 
-void Reader::showGS(unsigned char (*inputImage)[256]) {
+void Reader::showGS(unsigned char (*inputImage)[SIZE]) {
     showGSBMP(inputImage);
 }

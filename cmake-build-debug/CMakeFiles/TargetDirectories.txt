@@ -1,3 +1,3 @@
-D:/Projects/Image-Editor/cmake-build-debug/CMakeFiles/image_editor.dir
-D:/Projects/Image-Editor/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Projects/Image-Editor/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/projects/Image-Editor/cmake-build-debug/CMakeFiles/image_editor.dir
+C:/projects/Image-Editor/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/projects/Image-Editor/cmake-build-debug/CMakeFiles/rebuild_cache.dir

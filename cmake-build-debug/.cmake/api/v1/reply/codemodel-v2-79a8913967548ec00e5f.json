@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/Projects/Image-Editor/cmake-build-debug",
-		"source" : "D:/Projects/Image-Editor"
+		"build" : "C:/projects/Image-Editor/cmake-build-debug",
+		"source" : "C:/projects/Image-Editor"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 5
+		"minor" : 4
 	}
 }
