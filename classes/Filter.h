@@ -24,6 +24,7 @@ public:
     static void shuffleImage();
     static void blur();
     static void crop();
+    static void skewHorizontally();
 };
 
 

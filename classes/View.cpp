@@ -14,8 +14,8 @@ unsigned char View::imgRGB[Constant::SIZE][Constant::SIZE][3] = {};
 
 std::vector<std::string> View::menu = {
         "Black & White Filter",
-        "Invert Filter",
-        "Merge Filter",
+        "Invert Image",
+        "Merge Image",
         "Flip Image",
         "Rotate Image",
         "Darken or Lighten Image",
@@ -26,8 +26,8 @@ std::vector<std::string> View::menu = {
         "Shuffle Image",
         "Blur Image",
         "Crop Image",
-        "Skew Image Right",
-        "Skew Image Up",
+        "Skew Image Horizontally",
+        "Skew Image Vertically",
         "Save the image to a file",
 };
 
@@ -61,6 +61,7 @@ void View::mainMenu() {
         else if (inp == 11) Filter::shuffleImage();
         else if (inp == 12) Filter::blur();
         else if (inp == 13) Filter::crop();
+        else if (inp == 14) Filter::skewHorizontally();
         Reader::showGS(imgGS);
     }
     string path = "\\tmp\\final.bmp";

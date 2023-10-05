@@ -5,6 +5,7 @@
 #include "Filter.h"
 #include "../Constants.h"
 #include "View.h"
+#include <cmath>
 #include <queue>
 #include <set>
 #include <tuple>
@@ -237,15 +238,23 @@ void Filter::shuffleImage() {
 
 
 void Filter::blur() {
+    int scale = 0;
+    while (true) {
+        std::cout << "Enter a scale from 1 to 15.\n";
+        std::cin >> scale;
+        if (scale >= 1 && scale <= 15)
+            break;
+        std::cout << "Invalid input.\n";
+    }
     unsigned char temp[Constant::SIZE][Constant::SIZE]{};
-    int vis[Constant::SIZE][Constant::SIZE]{}, vid;
+    int vis[Constant::SIZE][Constant::SIZE]{}, vid = 0;
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j) {
             vid++;
             std::queue<std::pair<int, int>> q;
             q.emplace(i, j);
             vis[i][j] = vid;
-            int total = View::imgGS[i][j], distance = 5, curI, curJ, pixels = 1;
+            int total = View::imgGS[i][j], distance = scale, curI, curJ, pixels = 1;
             while (distance--) {
                 int sz = q.size();
                 for (int k = 0; k < sz; k++) {
@@ -281,12 +290,29 @@ void Filter::crop() {
         else
             break;
     }
-    unsigned char temp[Constant::SIZE][Constant::SIZE]{};
-    for (int row = x1; row <= x2; ++row)
-        for (int col = y1; col <= y2; ++col)
-            temp[row][col] = View::imgGS[row][col];
 
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
-            View::imgGS[i][j] = temp[i][j];
+            if (i < x1 || i > x2 || j < y1 || j > y2)
+                View::imgGS[i][j] = 0;
+}
+
+void Filter::skewHorizontally() {
+    int degree;
+    while (true) {
+        std::cout << "Enter the skew degree [0-45].\n";
+        std::cin >> degree;
+        if (degree >= 0 && degree <= 45)
+            break;
+        std::cout << "Invalid degree.\n";
+    }
+    unsigned char temp[Constant::SIZE][Constant::SIZE]{};
+    int scale = tan(degree * 3.14 / 180) * 256.0 / 45;
+    int minus = 256 / scale, cur = 0;
+    for (int i = 0; i < Constant::SIZE; i++)
+        for (int j = 0; j < Constant::SIZE; j++) {
+            if (j < scale - minus||j>Constant::SIZE-(sca))
+                continue;
+            temp[i][j] = View::imgGS[i][cur] + View::imgGS[i][cur++];
+        }
 }
