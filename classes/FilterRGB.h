@@ -4,9 +4,10 @@
 
 #ifndef IMAGE_EDITOR_FILTERRGB_H
 #define IMAGE_EDITOR_FILTERRGB_H
-
+#include "View.h"
 
 class FilterRGB {
+public:
     static void BW();
     static void invert();
     static void mergeImages();

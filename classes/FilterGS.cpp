@@ -12,7 +12,8 @@ void FilterGS::BW() {
     avg /= (Constant::SIZE * Constant::SIZE);
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
-            if (View::imgGS[i][j] < avg) View::imgGS[i][j] = 0;
+            if (View::imgGS[i][j] < avg)
+                View::imgGS[i][j] = 0;
             else
                 View::imgGS[i][j] = 255;
 }

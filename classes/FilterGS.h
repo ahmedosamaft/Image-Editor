@@ -7,6 +7,10 @@
 
 #include "../Constants.h"
 #include "View.h"
+#include <cmath>
+#include <queue>
+#include <set>
+#include <tuple>
 
 class FilterGS {
 public:
