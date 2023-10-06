@@ -5,7 +5,7 @@ unsigned char ZDriver::imgGS[Constant::SIZE][Constant::SIZE] = {};
 unsigned char ZDriver::initialGS[Constant::SIZE][Constant::SIZE] = {};
 unsigned char ZDriver::imgRGB[Constant::SIZE][Constant::SIZE][3] = {};
 unsigned char ZDriver::initialRGB[Constant::SIZE][Constant::SIZE][3] = {};
-
+bool isRGB;
 std::vector<std::string> ZDriver::menu = {
         "Black & White FilterGS",
         "Invert Image",
@@ -23,15 +23,13 @@ std::vector<std::string> ZDriver::menu = {
         "Crop Image",
         "Skew Image Horizontally",
         "Skew Image Vertically",
-        "Back to Initial Image",
-        "Save the image to a file"};
+        "Clear Filters applied on current Image",
+        "Save the Image to a File",
+        "Change current Image"};
 
 void ZDriver::mainMenu() {
     using namespace std;
-    bool isRGB = Helper::runMenu({"Grayscale", "RGB"}) == 2;
-    while (readImg(isRGB)){
-        cout << "Try Again!\n";
-    }
+    readImg();
     while (true) {
         cout << "Please select a filter to apply or 0 to exit:\n";
         int inp = Helper::runMenu(menu);
@@ -70,22 +68,36 @@ void ZDriver::mainMenu() {
             (!isRGB) ? FilterGS::skewVertically() : FilterRGB::skewVertically();
         else if (inp == 17)
             Helper::resetFilters(isRGB);
+        else if (inp == 18)
+            saveImage(isRGB);
+        else
+            readImg();
+
         (!isRGB) ? Reader::showGS(imgGS) : Reader::showRGB(imgRGB);
     }
-    saveImage(isRGB);
 }
 
-int ZDriver::readImg(bool isRGB) {
+int ZDriver::readImg() {
     using namespace std;
-    cout << "Please enter file name of the image to process (MUST BE IN imgs FOLDER):";
-    cin >> imgName;
-    imgName = ".\\imgs\\" + imgName + ".bmp";;
-    if (!isRGB) {
-        Reader::readGS(imgName, initialGS);
-        return Reader::readGS(imgName, imgGS);
-    } else {
-        Reader::readRGB(imgName, initialRGB);
-        return Reader::readRGB(imgName, imgRGB);
+    while (true) {
+        isRGB = Helper::runMenu({"Grayscale", "RGB"}) == 2;
+        cout << "Please enter file name of the image to process (MUST BE IN imgs FOLDER):";
+        cin >> imgName;
+        imgName = ".\\imgs\\" + imgName + ".bmp";
+        if (!isRGB) {
+            Reader::readGS(imgName, initialGS);
+            if (Reader::readGS(imgName, imgGS))
+                continue;
+            else
+                break;
+        } else {
+            Reader::readRGB(imgName, initialRGB);
+            if (Reader::readRGB(imgName, imgRGB))
+                continue;
+            else
+                break;
+        }
+        cout << "Try Again!\n";
     }
 }
 
