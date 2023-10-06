@@ -5,13 +5,13 @@
 #ifndef IMAGE_EDITOR_HELPER_H
 #define IMAGE_EDITOR_HELPER_H
 
-#include <vector>
 #include <string>
+#include <vector>
 
 
 class Helper {
 public:
-    static int runMenu(const std::vector<std::string> &menu);
+    static int runMenu(const std::vector<std::string> &menu, bool exit = 0);
     static void resetFilters(bool isRGB);
     static bool valid(int i, int j);
 };

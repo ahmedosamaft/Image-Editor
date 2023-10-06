@@ -1,7 +1,7 @@
 CMakeFiles/image_editor.dir/src/FilterGS.cpp.obj: \
  C:\projects\Image-Editor\src\FilterGS.cpp \
  C:/projects/Image-Editor/include/FilterGS.h \
- C:/projects/Image-Editor/include/ZDriver.h \
+ C:/projects/Image-Editor/include/Controller.h \
  C:/projects/Image-Editor/Constants.h \
  C:/projects/Image-Editor/dependency/Reader.h \
  C:/projects/Image-Editor/Constants.h \

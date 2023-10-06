@@ -200,6 +200,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Controller.obj: src/Controller.cpp.obj
+.PHONY : src/Controller.obj
+
+# target to build an object file
+src/Controller.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/Controller.cpp.obj
+.PHONY : src/Controller.cpp.obj
+
+src/Controller.i: src/Controller.cpp.i
+.PHONY : src/Controller.i
+
+# target to preprocess a source file
+src/Controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/Controller.cpp.i
+.PHONY : src/Controller.cpp.i
+
+src/Controller.s: src/Controller.cpp.s
+.PHONY : src/Controller.s
+
+# target to generate assembly for a file
+src/Controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/Controller.cpp.s
+.PHONY : src/Controller.cpp.s
+
 src/FilterGS.obj: src/FilterGS.cpp.obj
 .PHONY : src/FilterGS.obj
 
@@ -272,30 +296,6 @@ src/Helper.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/Helper.cpp.s
 .PHONY : src/Helper.cpp.s
 
-src/ZDriver.obj: src/ZDriver.cpp.obj
-.PHONY : src/ZDriver.obj
-
-# target to build an object file
-src/ZDriver.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/ZDriver.cpp.obj
-.PHONY : src/ZDriver.cpp.obj
-
-src/ZDriver.i: src/ZDriver.cpp.i
-.PHONY : src/ZDriver.i
-
-# target to preprocess a source file
-src/ZDriver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/ZDriver.cpp.i
-.PHONY : src/ZDriver.cpp.i
-
-src/ZDriver.s: src/ZDriver.cpp.s
-.PHONY : src/ZDriver.s
-
-# target to generate assembly for a file
-src/ZDriver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\image_editor.dir\build.make CMakeFiles/image_editor.dir/src/ZDriver.cpp.s
-.PHONY : src/ZDriver.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -314,6 +314,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/Controller.obj
+	@echo ... src/Controller.i
+	@echo ... src/Controller.s
 	@echo ... src/FilterGS.obj
 	@echo ... src/FilterGS.i
 	@echo ... src/FilterGS.s
@@ -323,9 +326,6 @@ help:
 	@echo ... src/Helper.obj
 	@echo ... src/Helper.i
 	@echo ... src/Helper.s
-	@echo ... src/ZDriver.obj
-	@echo ... src/ZDriver.i
-	@echo ... src/ZDriver.s
 .PHONY : help
 
 

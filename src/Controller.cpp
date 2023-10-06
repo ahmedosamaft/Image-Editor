@@ -1,12 +1,12 @@
-#include "../include/ZDriver.h"
+#include "../include/Controller.h"
 
-std::string ZDriver::imgName = std::string();
-unsigned char ZDriver::imgGS[Constant::SIZE][Constant::SIZE] = {};
-unsigned char ZDriver::initialGS[Constant::SIZE][Constant::SIZE] = {};
-unsigned char ZDriver::imgRGB[Constant::SIZE][Constant::SIZE][3] = {};
-unsigned char ZDriver::initialRGB[Constant::SIZE][Constant::SIZE][3] = {};
+std::string Controller::imgName = std::string();
+unsigned char Controller::imgGS[Constant::SIZE][Constant::SIZE] = {};
+unsigned char Controller::initialGS[Constant::SIZE][Constant::SIZE] = {};
+unsigned char Controller::imgRGB[Constant::SIZE][Constant::SIZE][3] = {};
+unsigned char Controller::initialRGB[Constant::SIZE][Constant::SIZE][3] = {};
 bool isRGB;
-std::vector<std::string> ZDriver::menu = {
+std::vector<std::string> Controller::menu = {
         "Black & White FilterGS",
         "Invert Image",
         "Merge Image",
@@ -27,12 +27,13 @@ std::vector<std::string> ZDriver::menu = {
         "Save the Image to a File",
         "Change current Image"};
 
-void ZDriver::mainMenu() {
+void Controller::mainMenu() {
     using namespace std;
+    cout << "Welcome to Image Editor Program.\n";
     readImg();
     while (true) {
         cout << "Please select a filter to apply or 0 to exit:\n";
-        int inp = Helper::runMenu(menu);
+        int inp = Helper::runMenu(menu, 1);
         if (inp == 0) break;
         else if (inp == 1)
             (!isRGB) ? FilterGS::BW() : FilterRGB::BW();
@@ -77,20 +78,26 @@ void ZDriver::mainMenu() {
     }
 }
 
-int ZDriver::readImg() {
+void Controller::readImg() {
     using namespace std;
     while (true) {
-        isRGB = Helper::runMenu({"Grayscale", "RGB"}) == 2;
-        cout << "Please enter file name of the image to process (MUST BE IN imgs FOLDER):";
+        int choice = 0;
+        while (!choice) {
+            cout << "Please enter image type.\n";
+            choice = Helper::runMenu({"Grayscale", "RGB"}, 0);
+        }
+        isRGB = (choice == 2);
+        cout << "Please enter file name of the image to process (MUST BE IN " << (isRGB ? "RGB" : "GS") << " imgs FOLDER):";
         cin >> imgName;
-        imgName = ".\\imgs\\" + imgName + ".bmp";
         if (!isRGB) {
+            imgName = ".\\imgs\\GS imgs\\" + imgName + ".bmp";
             Reader::readGS(imgName, initialGS);
             if (Reader::readGS(imgName, imgGS))
                 continue;
             else
                 break;
         } else {
+            imgName = ".\\imgs\\RGB imgs\\" + imgName + ".bmp";
             Reader::readRGB(imgName, initialRGB);
             if (Reader::readRGB(imgName, imgRGB))
                 continue;
@@ -101,7 +108,7 @@ int ZDriver::readImg() {
     }
 }
 
-void ZDriver::saveImage(bool isRGB) {
+void Controller::saveImage(bool isRGB) {
     std::string path;
     printf("Enter output image name >> ");
     std::cin >> path;

@@ -97,6 +97,9 @@
 		<Unit filename="C:/projects/Image-Editor/dependency/bmplib.h">
 			<Option target="image_editor"/>
 		</Unit>
+		<Unit filename="C:/projects/Image-Editor/include/Controller.h">
+			<Option target="image_editor"/>
+		</Unit>
 		<Unit filename="C:/projects/Image-Editor/include/FilterGS.h">
 			<Option target="image_editor"/>
 		</Unit>
@@ -106,10 +109,10 @@
 		<Unit filename="C:/projects/Image-Editor/include/Helper.h">
 			<Option target="image_editor"/>
 		</Unit>
-		<Unit filename="C:/projects/Image-Editor/include/ZDriver.h">
+		<Unit filename="C:/projects/Image-Editor/main.cpp">
 			<Option target="image_editor"/>
 		</Unit>
-		<Unit filename="C:/projects/Image-Editor/main.cpp">
+		<Unit filename="C:/projects/Image-Editor/src/Controller.cpp">
 			<Option target="image_editor"/>
 		</Unit>
 		<Unit filename="C:/projects/Image-Editor/src/FilterGS.cpp">
@@ -119,9 +122,6 @@
 			<Option target="image_editor"/>
 		</Unit>
 		<Unit filename="C:/projects/Image-Editor/src/Helper.cpp">
-			<Option target="image_editor"/>
-		</Unit>
-		<Unit filename="C:/projects/Image-Editor/src/ZDriver.cpp">
 			<Option target="image_editor"/>
 		</Unit>
 		<Unit filename="C:/projects/Image-Editor/CMakeLists.txt">

@@ -5,7 +5,7 @@
 #ifndef IMAGE_EDITOR_FILTERGS_H
 #define IMAGE_EDITOR_FILTERGS_H
 
-#include "ZDriver.h"
+#include "Controller.h"
 
 class FilterGS {
 public:

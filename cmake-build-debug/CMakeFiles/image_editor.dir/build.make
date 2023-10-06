@@ -110,19 +110,19 @@ CMakeFiles/image_editor.dir/dependency/bmplib.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/image_editor.dir/dependency/bmplib.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\projects\Image-Editor\dependency\bmplib.cpp -o CMakeFiles\image_editor.dir\dependency\bmplib.cpp.s
 
-CMakeFiles/image_editor.dir/src/ZDriver.cpp.obj: CMakeFiles/image_editor.dir/flags.make
-CMakeFiles/image_editor.dir/src/ZDriver.cpp.obj: C:/projects/Image-Editor/src/ZDriver.cpp
-CMakeFiles/image_editor.dir/src/ZDriver.cpp.obj: CMakeFiles/image_editor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\projects\Image-Editor\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/image_editor.dir/src/ZDriver.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/image_editor.dir/src/ZDriver.cpp.obj -MF CMakeFiles\image_editor.dir\src\ZDriver.cpp.obj.d -o CMakeFiles\image_editor.dir\src\ZDriver.cpp.obj -c C:\projects\Image-Editor\src\ZDriver.cpp
+CMakeFiles/image_editor.dir/src/Controller.cpp.obj: CMakeFiles/image_editor.dir/flags.make
+CMakeFiles/image_editor.dir/src/Controller.cpp.obj: C:/projects/Image-Editor/src/Controller.cpp
+CMakeFiles/image_editor.dir/src/Controller.cpp.obj: CMakeFiles/image_editor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\projects\Image-Editor\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/image_editor.dir/src/Controller.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/image_editor.dir/src/Controller.cpp.obj -MF CMakeFiles\image_editor.dir\src\Controller.cpp.obj.d -o CMakeFiles\image_editor.dir\src\Controller.cpp.obj -c C:\projects\Image-Editor\src\Controller.cpp
 
-CMakeFiles/image_editor.dir/src/ZDriver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/image_editor.dir/src/ZDriver.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\projects\Image-Editor\src\ZDriver.cpp > CMakeFiles\image_editor.dir\src\ZDriver.cpp.i
+CMakeFiles/image_editor.dir/src/Controller.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/image_editor.dir/src/Controller.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\projects\Image-Editor\src\Controller.cpp > CMakeFiles\image_editor.dir\src\Controller.cpp.i
 
-CMakeFiles/image_editor.dir/src/ZDriver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/image_editor.dir/src/ZDriver.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\projects\Image-Editor\src\ZDriver.cpp -o CMakeFiles\image_editor.dir\src\ZDriver.cpp.s
+CMakeFiles/image_editor.dir/src/Controller.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/image_editor.dir/src/Controller.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\projects\Image-Editor\src\Controller.cpp -o CMakeFiles\image_editor.dir\src\Controller.cpp.s
 
 CMakeFiles/image_editor.dir/src/Helper.cpp.obj: CMakeFiles/image_editor.dir/flags.make
 CMakeFiles/image_editor.dir/src/Helper.cpp.obj: C:/projects/Image-Editor/src/Helper.cpp
@@ -171,7 +171,7 @@ image_editor_OBJECTS = \
 "CMakeFiles/image_editor.dir/main.cpp.obj" \
 "CMakeFiles/image_editor.dir/dependency/Reader.cpp.obj" \
 "CMakeFiles/image_editor.dir/dependency/bmplib.cpp.obj" \
-"CMakeFiles/image_editor.dir/src/ZDriver.cpp.obj" \
+"CMakeFiles/image_editor.dir/src/Controller.cpp.obj" \
 "CMakeFiles/image_editor.dir/src/Helper.cpp.obj" \
 "CMakeFiles/image_editor.dir/src/FilterGS.cpp.obj" \
 "CMakeFiles/image_editor.dir/src/FilterRGB.cpp.obj"
@@ -182,7 +182,7 @@ image_editor_EXTERNAL_OBJECTS =
 image_editor.exe: CMakeFiles/image_editor.dir/main.cpp.obj
 image_editor.exe: CMakeFiles/image_editor.dir/dependency/Reader.cpp.obj
 image_editor.exe: CMakeFiles/image_editor.dir/dependency/bmplib.cpp.obj
-image_editor.exe: CMakeFiles/image_editor.dir/src/ZDriver.cpp.obj
+image_editor.exe: CMakeFiles/image_editor.dir/src/Controller.cpp.obj
 image_editor.exe: CMakeFiles/image_editor.dir/src/Helper.cpp.obj
 image_editor.exe: CMakeFiles/image_editor.dir/src/FilterGS.cpp.obj
 image_editor.exe: CMakeFiles/image_editor.dir/src/FilterRGB.cpp.obj

@@ -4,7 +4,7 @@
 
 #ifndef IMAGE_EDITOR_FILTERRGB_H
 #define IMAGE_EDITOR_FILTERRGB_H
-#include "ZDriver.h"
+#include "Controller.h"
 
 class FilterRGB {
 public:
