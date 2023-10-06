@@ -29,7 +29,9 @@ std::vector<std::string> ZDriver::menu = {
 void ZDriver::mainMenu() {
     using namespace std;
     bool isRGB = Helper::runMenu({"Grayscale", "RGB"}) == 2;
-    readImg(isRGB);
+    while (readImg(isRGB)){
+        cout << "Try Again!\n";
+    }
     while (true) {
         cout << "Please select a filter to apply or 0 to exit:\n";
         int inp = Helper::runMenu(menu);
@@ -73,17 +75,17 @@ void ZDriver::mainMenu() {
     saveImage(isRGB);
 }
 
-void ZDriver::readImg(bool isRGB) {
+int ZDriver::readImg(bool isRGB) {
     using namespace std;
     cout << "Please enter file name of the image to process (MUST BE IN imgs FOLDER):";
     cin >> imgName;
     imgName = ".\\imgs\\" + imgName + ".bmp";;
     if (!isRGB) {
         Reader::readGS(imgName, initialGS);
-        Reader::readGS(imgName, imgGS);
+        return Reader::readGS(imgName, imgGS);
     } else {
         Reader::readRGB(imgName, initialRGB);
-        Reader::readRGB(imgName, imgRGB);
+        return Reader::readRGB(imgName, imgRGB);
     }
 }
 

@@ -23,7 +23,7 @@ public:
     static unsigned char imgGS[Constant::SIZE][Constant::SIZE], initialGS[Constant::SIZE][Constant::SIZE];
     static unsigned char imgRGB[Constant::SIZE][Constant::SIZE][3], initialRGB[Constant::SIZE][Constant::SIZE][3];
     static void mainMenu();
-    static void readImg(bool isRGB);
+    static int readImg(bool isRGB);
     static void saveImage(bool isRGB);
 };
 
