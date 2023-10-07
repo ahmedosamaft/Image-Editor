@@ -5,7 +5,7 @@
 #include "../include/FilterGS.h"
 
 void FilterGS::BW() {
-    long long avg = 0;
+    int avg = 0;
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
             avg += Controller::imgGS[i][j];
@@ -25,72 +25,65 @@ void FilterGS::invert() {
 }
 
 void FilterGS::mergeImages() {
-    std::cout << "Please enter file name of the image to process (MUST BE IN imgs FOLDER):";
-    std::string imgName;
-    std::cin >> imgName;
-    imgName = "\\imgs\\" + imgName;
     unsigned char secondImgGS[Constant::SIZE][Constant::SIZE] = {};
-    char cwd[PATH_MAX];
-    Reader::readGS(strcat(getcwd(cwd, sizeof(cwd)), imgName.c_str()), secondImgGS);
+    Controller::readGSImage(secondImgGS);
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             Controller::imgGS[i][j] = (Controller::imgGS[i][j] + secondImgGS[i][j]) / 2;
 }
 
 void FilterGS::flip() {
-    std::vector<std::string> menu{"Horizontal Flip", "Vertical Flip"};
-    int choice = Helper::runMenu(menu);
-    if (choice == 1)
-        for (int i = 0; i < Constant::SIZE; ++i)
-            for (int j = 0; j < Constant::SIZE / 2; ++j)
+    int choice = Helper::getFlip();
+    choice--;
+    applyFlipping(choice);
+}
+
+void FilterGS::applyFlipping(bool isVertically) {
+    if (!isVertically)
+        for (int i = 0; i < Constant::SIZE; i++)
+            for (int j = 0; j < Constant::SIZE / 2; j++)
                 std::swap(Controller::imgGS[j][i], Controller::imgGS[Constant::SIZE - j - 1][i]);
     else
-        for (int i = 0; i < Constant::SIZE; ++i)
-            for (int j = 0; j < Constant::SIZE / 2; ++j)
+        for (int i = 0; i < Constant::SIZE; i++)
+            for (int j = 0; j < Constant::SIZE / 2; j++)
                 std::swap(Controller::imgGS[i][j], Controller::imgGS[i][Constant::SIZE - j - 1]);
 }
 
 void FilterGS::rotateImage() {
-    std::vector<std::string> munu{"90 Degree", "180 Degree", "270 Degree"};
-    int Degree = Helper::runMenu(munu);
+    int degree = Helper::getRotationDegree();
+    applyRotation(degree);
+}
+
+void FilterGS::applyRotation(int degree) {
     unsigned char temp[Constant::SIZE][Constant::SIZE];
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
-            if (Degree == 1)
+            if (degree == 1)
                 temp[i][j] = Controller::imgGS[j][255 - i];
-            else if (Degree == 2)
+            else if (degree == 2)
                 temp[i][j] = Controller::imgGS[255 - i][255 - j];
             else
                 temp[i][j] = Controller::imgGS[255 - j][i];
-
-    for (int i = 0; i < Constant::SIZE; i++)
-        for (int j = 0; j < Constant::SIZE; j++)
-            Controller::imgGS[i][j] = temp[i][j];
+    Helper::copyGSImage(temp, Controller::imgGS);
 }
 
 void FilterGS::darken() {
-    int scale;
-    while (true) {
-        std::cout << "Enter a scale [1-5].\n";
-        std::cin >> scale;
-        if (scale >= 1 && scale <= 5)
-            break;
-        std::cout << "Invalid input\n";
-    }
-    for (int i = 0; i < Constant::SIZE; ++i)
-        for (int j = 0; j < Constant::SIZE; ++j)
+    int scale = Helper::getScale(5);
+    applyDarkness(scale);
+}
+
+void FilterGS::applyDarkness(int scale) {
+    for (int i = 0; i < Constant::SIZE; i++)
+        for (int j = 0; j < Constant::SIZE; j++)
             Controller::imgGS[i][j] = Controller::imgGS[i][j] / scale;
 }
 
 void FilterGS::lighten() {
-    int scale;
-    while (true) {
-        std::cout << "Enter a scale [1-5].\n";
-        std::cin >> scale;
-        if (scale >= 1 && scale <= 5)
-            break;
-        std::cout << "Invalid input\n";
-    }
+    int scale = Helper::getScale(5);
+    applyLightness(scale);
+}
+
+void FilterGS::applyLightness(int scale) {
     scale = 7 - scale;
     for (int i = 0; i < Constant::SIZE; ++i)
         for (int j = 0; j < Constant::SIZE; ++j)
@@ -100,39 +93,29 @@ void FilterGS::lighten() {
 
 void FilterGS::detectImageEdges() {
     unsigned char temp[Constant::SIZE][Constant::SIZE];
-    bool vis[Constant::SIZE][Constant::SIZE]{};
-    std::queue<std::pair<int, int>> q;
-    int i, j;
-    vis[0][0] = 1;
-    q.emplace(0, 0);
-    while (q.size()) {
-        std::tie(i, j) = q.front();
-        q.pop();
-        bool isEdge = 0;
-        for (int dir = 0; dir < 4; dir++) {
-            int x = i + dirx[dir];
-            int y = j + diry[dir];
-            if (Helper::valid(x, y)) {
-                if (!vis[x][y])
-                    vis[x][y] = 1, q.emplace(x, y);
-                if ((int) Controller::imgGS[i][j] - (int) Controller::imgGS[x][y] > 30)
+    for (int i = 0; i < Constant::SIZE; i++)
+        for (int j = 0; j < Constant::SIZE; j++) {
+            bool isEdge = 0;
+            for (int dir = 0; dir < 4; dir++) {
+                int x = i + dirx[dir];
+                int y = j + diry[dir];
+                if (Helper::valid(x, y) && (int) Controller::imgGS[i][j] - (int) Controller::imgGS[x][y] > 30)
                     isEdge = 1;
             }
+            if (isEdge)
+                temp[i][j] = 0;
+            else
+                temp[i][j] = 255;
         }
-        if (isEdge)
-            temp[i][j] = 0;
-        else
-            temp[i][j] = 255;
-    }
-
-    for (int i = 0; i < Constant::SIZE; i++)
-        for (int j = 0; j < Constant::SIZE; j++)
-            Controller::imgGS[i][j] = temp[i][j];
+    Helper::copyGSImage(temp, Controller::imgGS);
 }
 
 void FilterGS::enlargeImage() {
-    std::vector<std::string> menu{"First quarter", "Second quarter", "Third quarter", "Fourth quarter"};
-    int quarter = Helper::runMenu(menu);
+    int quarter = Helper::getQuarter();
+    applyEnlarging(quarter);
+}
+
+void FilterGS::applyEnlarging(int quarter) {
     unsigned char temp[Constant::SIZE][Constant::SIZE];
     int startI = 0, startJ = 0, endI = Constant::SIZE / 2, endJ = Constant::SIZE / 2;
     if (quarter == 3 || quarter == 4)
@@ -145,19 +128,19 @@ void FilterGS::enlargeImage() {
                 for (int y = 0; y < 2; y++)
                     temp[2 * (i - startI) + x][2 * (j - startJ) + y] = Controller::imgGS[i][j];
 
-    for (int i = 0; i < Constant::SIZE; i++)
-        for (int j = 0; j < Constant::SIZE; j++)
-            Controller::imgGS[i][j] = temp[i][j];
+    Helper::copyGSImage(temp, Controller::imgGS);
 }
 
 void FilterGS::shrinkImage() {
+    int ratio = Helper::getRatio();
+    applyShrinking(ratio);
+}
+
+void FilterGS::applyShrinking(int ratio) {
     unsigned char temp[Constant::SIZE][Constant::SIZE]{};
-    std::vector<std::string> menu{"1/2", "1/3", "1/4"};
-    int dimension = Helper::runMenu(menu);
     int endI = Constant::SIZE, endJ = Constant::SIZE;
     int endX = 1, endY = 1;
-    int num = dimension + 1;
-    endI /= num, endJ /= num, endX *= num, endY *= num;
+    endI /= ratio, endJ /= ratio, endX *= ratio, endY *= ratio;
 
     for (int i = 0; i < endI; i++)
         for (int j = 0; j < endJ; j++) {
@@ -169,23 +152,23 @@ void FilterGS::shrinkImage() {
             temp[i][j] = avg;
         }
 
-    for (int i = 0; i < Constant::SIZE; i++)
-        for (int j = 0; j < Constant::SIZE; j++)
-            Controller::imgGS[i][j] = temp[i][j];
+    Helper::copyGSImage(temp, Controller::imgGS);
+}
+void FilterGS::mirrorImage() {
+    int dimension = Helper::getMirroringDimension();
+    applyMirroring(dimension);
 }
 
-void FilterGS::mirrorImage() {
-    std::vector<std::string> menu{"Left", "Right", "Upper", "Lower"};
-    int option = Helper::runMenu(menu);
-    if (option == 1)
+void FilterGS::applyMirroring(int dimension) {
+    if (dimension == 1)
         for (int i = 0; i < Constant::SIZE; i++)
             for (int j = Constant::SIZE / 2; j < Constant::SIZE; j++)
                 Controller::imgGS[i][j] = Controller::imgGS[i][Constant::SIZE - j + 1];
-    else if (option == 2)
+    else if (dimension == 2)
         for (int i = 0; i < Constant::SIZE; i++)
             for (int j = 0; j < Constant::SIZE / 2; j++)
                 Controller::imgGS[i][j] = Controller::imgGS[i][Constant::SIZE - j + 1];
-    else if (option == 3)
+    else if (dimension == 3)
         for (int i = Constant::SIZE / 2; i < Constant::SIZE; i++)
             for (int j = 0; j < Constant::SIZE; j++)
                 Controller::imgGS[i][j] = Controller::imgGS[Constant::SIZE - i + 1][j];
@@ -196,6 +179,12 @@ void FilterGS::mirrorImage() {
 }
 
 void FilterGS::shuffleImage() {
+    int order[4];
+    Helper::getShufflingorder(order);
+}
+
+void FilterGS::applyShuffling(int order[]) {
+
     unsigned char quarters[4][Constant::SIZE / 2][Constant::SIZE / 2];
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
@@ -207,29 +196,12 @@ void FilterGS::shuffleImage() {
                 quarters[2][i - Constant::SIZE / 2][j] = Controller::imgGS[i][j];
             else
                 quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2] = Controller::imgGS[i][j];
-    int order[4];
-    while (true) {
-        std::cout << "Enter the order of the quarters.\n";
-        std::set<int> s;
-        int input;
-        for (int i = 0; i < 4; i++)
-            std::cin >> input, s.insert(input), order[i] = input - 1;
-        bool valid = 1;
-        int nxt = 1;
-        for (auto i: s)
-            if (i != nxt)
-                valid = 0;
-            else
-                nxt++;
-        if (!valid || s.size() != 4)
-            std::cout << "Invalid order.\n";
-        else
-            break;
-    }
+
     for (int i = 0; i < 4; i++)
         for (int j = i + 1; j < 4; j++)
             if (j == order[i])
                 std::swap(quarters[i], quarters[j]);
+
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             if (i < Constant::SIZE / 2 && j < Constant::SIZE / 2)
@@ -242,16 +214,12 @@ void FilterGS::shuffleImage() {
                 Controller::imgGS[i][j] = quarters[3][i - Constant::SIZE / 2][j - Constant::SIZE / 2];
 }
 
-
 void FilterGS::blur() {
-    int scale = 0;
-    while (true) {
-        std::cout << "Enter a scale [1-15].\n";
-        std::cin >> scale;
-        if (scale >= 1 && scale <= 15)
-            break;
-        std::cout << "Invalid input.\n";
-    }
+    int scale = Helper::getScale(15);
+    applyBluring(scale);
+}
+
+void FilterGS::applyBluring(int scale) {
     unsigned char temp[Constant::SIZE][Constant::SIZE]{};
     int vis[Constant::SIZE][Constant::SIZE]{}, vid = 0;
     for (int i = 0; i < Constant::SIZE; ++i)
@@ -281,21 +249,13 @@ void FilterGS::blur() {
             total /= pixels;
             temp[i][j] = total;
         }
-    for (int i = 0; i < Constant::SIZE; i++)
-        for (int j = 0; j < Constant::SIZE; j++)
-            Controller::imgGS[i][j] = temp[i][j];
+
+    Helper::copyGSImage(temp, Controller::imgGS);
 }
 
 void FilterGS::crop() {
     int x1, y1, x2, y2;
-    while (true) {
-        printf("Please enter x1 y1 x2 y2 (top left & bottom right): ");
-        std::cin >> x1 >> y1 >> x2 >> y2;
-        if (!Helper::valid(x1, y1) || !Helper::valid(x2, y2) || x2 < x1 || y2 < y1)
-            std::cout << "Invalid input.\n";
-        else
-            break;
-    }
+    Helper::getRectangle(x1, y1, x2, y2);
 
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
@@ -304,14 +264,11 @@ void FilterGS::crop() {
 }
 
 void FilterGS::skewHorizontally() {
-    int degree;
-    while (true) {
-        std::cout << "Enter the skew degree [0-45].\n";
-        std::cin >> degree;
-        if (degree >= 0 && degree <= 45)
-            break;
-        std::cout << "Invalid degree.\n";
-    }
+    int degree = Helper::getSkewDegree();
+    applySkewHorizzantally(degree);
+}
+
+void FilterGS::applySkewHorizzantally(int degree) {
     unsigned char temp[Constant::SIZE][Constant::SIZE]{};
     double scale = tan(degree * 3.14 / 180) * 256.0;
     double toTake = 256 / (256 - scale);
@@ -327,37 +284,22 @@ void FilterGS::skewHorizontally() {
             cur += toTake;
         }
     }
-    for (int i = 0; i < Constant::SIZE; i++)
-        for (int j = 0; j < Constant::SIZE; j++)
-            Controller::imgGS[i][j] = temp[i][j];
+    Helper::copyGSImage(temp, Controller::imgGS);
 }
 
 void FilterGS::skewVertically() {
+    int degree = Helper::getSkewDegree();
+    applySkewVertically(degree);
+}
 
-    unsigned char temp[Constant::SIZE][Constant::SIZE]{};
-    int degree;
-    while (true) {
-        std::cout << "Enter the skew degree [0-45].\n";
-        std::cin >> degree;
-        if (degree >= 0 && degree <= 45)
-            break;
-        std::cout << "Invalid degree.\n";
-    }
-    double scale = tan(degree * 3.14 / 180) * 256.0;
-    double toTake = 256 / (256 - scale);
-    double minus = scale / 256, cur = 0, here = 0;
-    for (int row = 0; row < Constant::SIZE; row++) {
-        here += minus, cur = 0;
-        for (int col = scale - here; col < Constant::SIZE - here; col++) {
-            int avg = 0, pixels = 0;
-            for (int k = std::max(0, (int) ceil(cur - toTake)); k < std::min(Constant::SIZE, (int) ceil(cur + toTake)); k++)
-                pixels++, avg += Controller::imgGS[k][row];
-            avg /= std::max(1, pixels);
-            temp[col][row] = avg;
-            cur += toTake;
-        }
-    }
+void FilterGS::applySkewVertically(int degree) {
+    unsigned char temp[Constant::SIZE][Constant::SIZE];
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
-            Controller::imgGS[i][j] = temp[i][j];
+            temp[i][j] = Controller::imgGS[j][i];
+
+    Helper::copyGSImage(temp, Controller::imgGS);
+    FilterGS::applySkewHorizzantally(degree);
+    applyRotation(3);
+    applyFlipping(1);
 }

@@ -1,6 +1,5 @@
 #include "../include/Controller.h"
 
-std::string Controller::imgName = std::string();
 unsigned char Controller::imgGS[Constant::SIZE][Constant::SIZE] = {};
 unsigned char Controller::initialGS[Constant::SIZE][Constant::SIZE] = {};
 unsigned char Controller::imgRGB[Constant::SIZE][Constant::SIZE][3] = {};
@@ -30,7 +29,7 @@ std::vector<std::string> Controller::menu = {
 void Controller::mainMenu() {
     using namespace std;
     cout << "Welcome to Image Editor Program.\n";
-    readImg();
+    readImage();
     while (true) {
         cout << "Please select a filter to apply or 0 to exit:\n";
         int inp = Helper::runMenu(menu, 1);
@@ -70,45 +69,59 @@ void Controller::mainMenu() {
         else if (inp == 17)
             Helper::resetFilters(isRGB);
         else if (inp == 18)
-            saveImage(isRGB);
+            saveImage();
         else
-            readImg();
+            readImage();
 
         (!isRGB) ? Reader::showGS(imgGS) : Reader::showRGB(imgRGB);
     }
 }
 
-void Controller::readImg() {
+void Controller::readImage() {
     using namespace std;
-    while (true) {
-        int choice = 0;
-        while (!choice) {
-            cout << "Please enter image type.\n";
-            choice = Helper::runMenu({"Grayscale", "RGB"}, 0);
-        }
-        isRGB = (choice == 2);
-        cout << "Please enter file name of the image to process (MUST BE IN " << (isRGB ? "RGB" : "GS") << " imgs FOLDER):";
-        cin >> imgName;
-        if (!isRGB) {
-            imgName = ".\\imgs\\GS imgs\\" + imgName + ".bmp";
-            Reader::readGS(imgName, initialGS);
-            if (Reader::readGS(imgName, imgGS))
-                continue;
-            else
-                break;
-        } else {
-            imgName = ".\\imgs\\RGB imgs\\" + imgName + ".bmp";
-            Reader::readRGB(imgName, initialRGB);
-            if (Reader::readRGB(imgName, imgRGB))
-                continue;
-            else
-                break;
-        }
-        cout << "Try Again!\n";
+    int choice = 0;
+    while (!choice) {
+        cout << "Please enter image type.\n";
+        choice = Helper::runMenu({"Grayscale", "RGB"}, 0);
+    }
+    isRGB = (choice == 2);
+    if (isRGB) {
+        readRGBImage(initialRGB);
+        Helper::copyRGBImage(initialRGB, imgRGB);
+    } else {
+        readGSImage(initialGS);
+        Helper::copyGSImage(initialGS, imgGS);
     }
 }
 
-void Controller::saveImage(bool isRGB) {
+void Controller::readGSImage(unsigned char image[][Constant::SIZE]) {
+    std::string imgName;
+    while (true) {
+        std::cout << "Please enter file name of the image to process (MUST BE IN GS imgs FOLDER):";
+        std::cin >> imgName;
+        imgName = ".\\imgs\\GS imgs\\" + imgName + ".bmp";
+        if (Reader::readGS(imgName, image))
+            continue;
+        else
+            break;
+    }
+}
+
+void Controller::readRGBImage(unsigned char image[][Constant::SIZE][Constant::RGB]) {
+    std::string imgName;
+    while (true) {
+        std::cout << "Please enter file name of the image to process (MUST BE IN RGB imgs FOLDER):";
+        std::cin >> imgName;
+        imgName = ".\\imgs\\RGB imgs\\" + imgName + ".bmp";
+        if (Reader::readRGB(imgName, image))
+            continue;
+        else
+            break;
+    }
+}
+
+
+void Controller::saveImage() {
     std::string path;
     printf("Enter output image name >> ");
     std::cin >> path;

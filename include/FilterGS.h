@@ -15,18 +15,29 @@ public:
     static void invert();
     static void mergeImages();
     static void flip();
+    static void applyFlipping(bool isVertically);
     static void rotateImage();
+    static void applyRotation(int degree);
     static void darken();
+    static void applyDarkness(int scale);
     static void lighten();
+    static void applyLightness(int scale);
     static void detectImageEdges();
     static void enlargeImage();
+    static void applyEnlarging(int quarter);
     static void shrinkImage();
+    static void applyShrinking(int ratio);
     static void mirrorImage();
+    static void applyMirroring(int dimention);
     static void shuffleImage();
+    static void applyShuffling(int order[]);
     static void blur();
+    static void applyBluring(int scale);
     static void crop();
     static void skewHorizontally();
+    static void applySkewHorizzantally(int degree);
     static void skewVertically();
+    static void applySkewVertically(int degree);
 
 };
 

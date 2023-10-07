@@ -1,6 +1,7 @@
 CMakeFiles/image_editor.dir/src/Helper.cpp.obj: \
  C:\projects\Image-Editor\src\Helper.cpp \
  C:/projects/Image-Editor/include/Helper.h \
+ C:/projects/Image-Editor/Constants.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/string \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
@@ -114,7 +115,6 @@ CMakeFiles/image_editor.dir/src/Helper.cpp.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_bvector.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc \
  C:/projects/Image-Editor/include/Controller.h \
- C:/projects/Image-Editor/Constants.h \
  C:/projects/Image-Editor/dependency/Reader.h \
  C:/projects/Image-Editor/Constants.h \
  C:/projects/Image-Editor/dependency/bmplib.h \

@@ -18,13 +18,14 @@
 
 class Controller {
 public:
-    static std::string imgName;
     static std::vector<std::string> menu;
     static unsigned char imgGS[Constant::SIZE][Constant::SIZE], initialGS[Constant::SIZE][Constant::SIZE];
     static unsigned char imgRGB[Constant::SIZE][Constant::SIZE][3], initialRGB[Constant::SIZE][Constant::SIZE][3];
     static void mainMenu();
-    static void readImg();
-    static void saveImage(bool isRGB);
+    static void readImage();
+    static void readGSImage(unsigned char image[][Constant::SIZE]);
+    static void readRGBImage(unsigned char image[][Constant::SIZE][Constant::RGB]);
+    static void saveImage();
 };
 
 
