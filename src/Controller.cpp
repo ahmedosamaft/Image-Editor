@@ -30,6 +30,7 @@ void Controller::mainMenu() {
     using namespace std;
     cout << "Welcome to Image Editor Program.\n";
     readImage();
+
     while (true) {
         cout << "Please select a filter to apply or 0 to exit:\n";
         int inp = Helper::runMenu(menu, 1);

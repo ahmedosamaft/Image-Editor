@@ -59,11 +59,11 @@ void FilterGS::applyRotation(int degree) {
     for (int i = 0; i < Constant::SIZE; i++)
         for (int j = 0; j < Constant::SIZE; j++)
             if (degree == 1)
-                temp[i][j] = Controller::imgGS[j][255 - i];
+                temp[i][j] = Controller::imgGS[j][Constant::SIZE - i - 1];
             else if (degree == 2)
-                temp[i][j] = Controller::imgGS[255 - i][255 - j];
+                temp[i][j] = Controller::imgGS[Constant::SIZE - i - 1][Constant::SIZE - j - 1];
             else
-                temp[i][j] = Controller::imgGS[255 - j][i];
+                temp[i][j] = Controller::imgGS[Constant::SIZE - j - 1][i];
     Helper::copyGSImage(temp, Controller::imgGS);
 }
 
@@ -270,9 +270,9 @@ void FilterGS::skewHorizontally() {
 
 void FilterGS::applySkewHorizzantally(int degree) {
     unsigned char temp[Constant::SIZE][Constant::SIZE]{};
-    double scale = tan(degree * 3.14 / 180) * 256.0;
-    double toTake = 256 / (256 - scale);
-    double minus = scale / 256, cur = 0, here = 0;
+    double scale = tan(degree * 3.14 / 180) * Constant::SIZE;
+    double toTake = Constant::SIZE / (Constant::SIZE - scale);
+    double minus = scale / Constant::SIZE, cur = 0, here = 0;
     for (int row = 0; row < Constant::SIZE; row++) {
         here += minus, cur = 0;
         for (int col = scale - here; col < Constant::SIZE - here; col++) {
